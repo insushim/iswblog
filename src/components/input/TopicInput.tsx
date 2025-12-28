@@ -116,22 +116,26 @@ export function TopicInput() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 ml-2">
-                    <Badge variant="success" size="sm">
-                      +{suggestion.trendData.growthRate}%
-                    </Badge>
-                    <Badge
-                      variant={
-                        suggestion.trendData.competitionLevel === 'low'
-                          ? 'success'
-                          : suggestion.trendData.competitionLevel === 'medium'
-                          ? 'warning'
-                          : 'error'
-                      }
-                      size="sm"
-                    >
-                      경쟁 {suggestion.trendData.competitionLevel === 'low' ? '낮음' :
-                            suggestion.trendData.competitionLevel === 'medium' ? '보통' : '높음'}
-                    </Badge>
+                    {suggestion.trendData?.growthRate !== undefined && (
+                      <Badge variant="success" size="sm">
+                        +{suggestion.trendData.growthRate}%
+                      </Badge>
+                    )}
+                    {suggestion.trendData?.competitionLevel && (
+                      <Badge
+                        variant={
+                          suggestion.trendData.competitionLevel === 'low'
+                            ? 'success'
+                            : suggestion.trendData.competitionLevel === 'medium'
+                            ? 'warning'
+                            : 'error'
+                        }
+                        size="sm"
+                      >
+                        경쟁 {suggestion.trendData.competitionLevel === 'low' ? '낮음' :
+                              suggestion.trendData.competitionLevel === 'medium' ? '보통' : '높음'}
+                      </Badge>
+                    )}
                   </div>
                 </button>
               ))}

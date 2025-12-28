@@ -192,9 +192,11 @@ export function Sidebar({ className }: SidebarProps) {
                   <span className="flex-1 truncate text-zinc-700 dark:text-zinc-300">
                     {suggestion.topic}
                   </span>
-                  <Badge variant="success" size="sm">
-                    +{suggestion.trendData.growthRate}%
-                  </Badge>
+                  {suggestion.trendData?.growthRate !== undefined && (
+                    <Badge variant="success" size="sm">
+                      +{suggestion.trendData.growthRate}%
+                    </Badge>
+                  )}
                 </button>
               ))}
             </div>
