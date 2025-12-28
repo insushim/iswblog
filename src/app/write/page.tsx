@@ -47,9 +47,12 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success && data.research) {
-        actions.setResearch(data.research);
+      if (data.topicAnalysis || data.keywordResearch) {
+        actions.setResearch(data);
         actions.completeStep(1);
+      } else {
+        console.error('Research API response:', data);
+        actions.addError(1, data.error || '리서치 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Research error:', error);
@@ -80,9 +83,15 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success && data.outline) {
-        actions.setOutline(data.outline);
+      if (data.error) {
+        console.error('Outline API error:', data.error);
+        actions.addError(2, data.error);
+      } else if (data.sections || data.topic) {
+        actions.setOutline(data);
         actions.completeStep(2);
+      } else {
+        console.error('Outline API response:', data);
+        actions.addError(2, '아웃라인 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Outline error:', error);
@@ -118,13 +127,19 @@ export default function WritePage() {
       actions.setProgress(50, '초안 생성 완료...');
 
       const data = await response.json();
-      if (data.success && data.content) {
+      if (data.error) {
+        console.error('Draft API error:', data.error);
+        actions.addError(3, data.error);
+      } else if (data.content) {
         actions.setContent({
           rawDraft: data.content,
           finalContent: data.content
         });
         actions.completeStep(3);
         actions.setProgress(100, '완료');
+      } else {
+        console.error('Draft API response:', data);
+        actions.addError(3, '초안 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Draft error:', error);
@@ -152,7 +167,10 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success) {
+      if (data.error) {
+        console.error('SEO API error:', data.error);
+        actions.addError(5, data.error);
+      } else if (data.optimizedContent || data.analysis || data.meta) {
         if (data.optimizedContent) {
           actions.setContent({ finalContent: data.optimizedContent });
         }
@@ -163,6 +181,9 @@ export default function WritePage() {
           actions.setMeta(data.meta);
         }
         actions.completeStep(5);
+      } else {
+        console.error('SEO API response:', data);
+        actions.addError(5, 'SEO 분석 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('SEO error:', error);
@@ -190,12 +211,18 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success && data.humanizedContent) {
+      if (data.error) {
+        console.error('Humanize API error:', data.error);
+        actions.addError(6, data.error);
+      } else if (data.humanizedContent) {
         actions.setContent({
           humanizedDraft: data.humanizedContent,
           finalContent: data.humanizedContent
         });
         actions.completeStep(6);
+      } else {
+        console.error('Humanize API response:', data);
+        actions.addError(6, '휴머나이즈 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Humanize error:', error);
@@ -226,9 +253,15 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success && data.images) {
+      if (data.error) {
+        console.error('Image API error:', data.error);
+        actions.addError(4, data.error);
+      } else if (data.images) {
         actions.setImages({ inlineImages: data.images });
         actions.completeStep(4);
+      } else {
+        console.error('Image API response:', data);
+        actions.addError(4, '이미지 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Image error:', error);
@@ -255,9 +288,15 @@ export default function WritePage() {
       });
 
       const data = await response.json();
-      if (data.success && data.grade) {
+      if (data.error) {
+        console.error('Grade API error:', data.error);
+        actions.addError(7, data.error);
+      } else if (data.grade) {
         actions.setAnalysis({ contentGrade: data.grade });
         actions.completeStep(7);
+      } else {
+        console.error('Grade API response:', data);
+        actions.addError(7, '품질 평가 데이터를 받지 못했습니다.');
       }
     } catch (error) {
       console.error('Grade error:', error);

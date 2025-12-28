@@ -338,7 +338,7 @@ export const useBlogStore = create<BlogStore>()(
               );
               const data = await response.json();
 
-              if (data.success) {
+              if (data.trends) {
                 set(
                   (state) => ({
                     trends: {
@@ -351,6 +351,14 @@ export const useBlogStore = create<BlogStore>()(
                   }),
                   false,
                   'fetchTrends/success'
+                );
+              } else {
+                set(
+                  (state) => ({
+                    trends: { ...state.trends, isLoading: false },
+                  }),
+                  false,
+                  'fetchTrends/no-data'
                 );
               }
             } catch (error) {
