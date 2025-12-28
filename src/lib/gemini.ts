@@ -3,7 +3,7 @@
 // ============================================================
 
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models';
-const GEMINI_MODEL = 'gemini-2.5-pro-preview-06-05';
+const GEMINI_MODEL = 'gemini-3-pro-preview';
 
 interface GeminiResponse {
   candidates: {
