@@ -1,0 +1,964 @@
+{
+  "koreanBloggers": [
+    {
+      "id": "kb001",
+      "name": "라이프스타일블로거A",
+      "platform": "naver",
+      "category": "라이프스타일",
+      "monthlyVisitors": 2500000,
+      "characteristics": {
+        "sentenceLength": { "average": 25, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.3,
+        "hookStyle": "question",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "독자 질문으로 시작",
+          "개인 경험 공유",
+          "중간 요약 박스",
+          "실용적 팁 리스트"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "story-hook",
+          "elements": ["personal-anecdote", "relatable-question", "bold-statement"]
+        },
+        "body": {
+          "structure": "problem-solution",
+          "subheadingStyle": "question-format",
+          "transitionStyle": "conversational"
+        },
+        "conclusion": {
+          "style": "summary-with-opinion",
+          "ctaType": "engagement-question"
+        }
+      },
+      "samplePhrases": [
+        "혹시 이런 경험 있으시지 않나요?",
+        "솔직히 말씀드리면",
+        "제가 직접 써보니까요",
+        "이건 진짜 강추에요!"
+      ],
+      "avoidPatterns": [
+        "~에 대해 알아보겠습니다",
+        "오늘은 ~를 소개합니다"
+      ]
+    },
+    {
+      "id": "kb002",
+      "name": "IT전문블로거B",
+      "platform": "tistory",
+      "category": "테크/IT",
+      "monthlyVisitors": 1800000,
+      "characteristics": {
+        "sentenceLength": { "average": 35, "variance": "medium" },
+        "paragraphLength": { "average": 5, "max": 8 },
+        "toneProfile": { "formal": 60, "casual": 40 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.4,
+        "hookStyle": "problem",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "코드 블록 활용",
+          "단계별 스크린샷",
+          "비교 테이블",
+          "요약 TL;DR"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "problem-statement",
+          "elements": ["common-error", "frustration-point", "solution-promise"]
+        },
+        "body": {
+          "structure": "step-by-step",
+          "subheadingStyle": "numbered-steps",
+          "transitionStyle": "logical"
+        },
+        "conclusion": {
+          "style": "summary-with-resources",
+          "ctaType": "github-link"
+        }
+      },
+      "samplePhrases": [
+        "이 글을 읽고 나면",
+        "에러가 발생하셨나요?",
+        "핵심만 정리하면",
+        "더 자세한 내용은"
+      ],
+      "avoidPatterns": [
+        "안녕하세요 여러분",
+        "좋은 하루 되세요"
+      ]
+    },
+    {
+      "id": "kb003",
+      "name": "요리블로거C",
+      "platform": "naver",
+      "category": "음식/요리",
+      "monthlyVisitors": 3200000,
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 20, "casual": 80 },
+        "emojiUsage": "heavy",
+        "imageRatio": 0.5,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "과정 사진 다수",
+          "팁 박스 활용",
+          "재료 리스트 표",
+          "완성샷으로 마무리"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "appetite-appeal",
+          "elements": ["seasonal-hook", "family-story", "taste-description"]
+        },
+        "body": {
+          "structure": "recipe-steps",
+          "subheadingStyle": "step-numbers",
+          "transitionStyle": "friendly"
+        },
+        "conclusion": {
+          "style": "serving-suggestion",
+          "ctaType": "recipe-request"
+        }
+      },
+      "samplePhrases": [
+        "오늘 뭐 먹지 고민이시라면",
+        "진짜 맛있어요!",
+        "저희 집 인기 메뉴예요",
+        "꿀팁 하나 드릴게요"
+      ],
+      "avoidPatterns": [
+        "조리법을 소개합니다",
+        "재료는 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb004",
+      "name": "여행블로거D",
+      "platform": "naver",
+      "category": "여행",
+      "monthlyVisitors": 2100000,
+      "characteristics": {
+        "sentenceLength": { "average": 28, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 35, "casual": 65 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.45,
+        "hookStyle": "curiosity-gap",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "지도 정보 삽입",
+          "실용 정보 박스",
+          "비용 정보 표",
+          "포토존 추천"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "destination-tease",
+          "elements": ["best-shot", "trip-context", "expectation-setting"]
+        },
+        "body": {
+          "structure": "timeline-based",
+          "subheadingStyle": "location-based",
+          "transitionStyle": "narrative"
+        },
+        "conclusion": {
+          "style": "practical-tips",
+          "ctaType": "destination-question"
+        }
+      },
+      "samplePhrases": [
+        "드디어 다녀왔어요!",
+        "인생샷 건졌습니다",
+        "현지인 맛집",
+        "가기 전에 꼭 알아두세요"
+      ],
+      "avoidPatterns": [
+        "여행기를 작성합니다",
+        "일정은 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb005",
+      "name": "육아블로거E",
+      "platform": "naver",
+      "category": "육아/교육",
+      "monthlyVisitors": 1500000,
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 25, "casual": 75 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.35,
+        "hookStyle": "question",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "아이 사진 활용",
+          "경험담 중심",
+          "체크리스트 제공",
+          "공감 포인트 강조"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "parent-empathy",
+          "elements": ["struggle-share", "solution-hint", "solidarity"]
+        },
+        "body": {
+          "structure": "experience-based",
+          "subheadingStyle": "age-stage",
+          "transitionStyle": "empathetic"
+        },
+        "conclusion": {
+          "style": "encouragement",
+          "ctaType": "experience-share"
+        }
+      },
+      "samplePhrases": [
+        "저도 처음엔 막막했어요",
+        "우리 아이 기준으로는",
+        "엄마들 사이에서 유명한",
+        "이건 꼭 알려드리고 싶었어요"
+      ],
+      "avoidPatterns": [
+        "육아 정보입니다",
+        "도움이 되길 바랍니다"
+      ]
+    },
+    {
+      "id": "kb006",
+      "name": "뷰티블로거F",
+      "platform": "naver",
+      "category": "뷰티/패션",
+      "monthlyVisitors": 2800000,
+      "characteristics": {
+        "sentenceLength": { "average": 23, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 20, "casual": 80 },
+        "emojiUsage": "heavy",
+        "imageRatio": 0.5,
+        "hookStyle": "bold-statement",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "비포애프터 사진",
+          "발색 스와치",
+          "착용샷 다수",
+          "성분 분석"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "product-reveal",
+          "elements": ["hype-build", "personal-result", "promise"]
+        },
+        "body": {
+          "structure": "review-format",
+          "subheadingStyle": "aspect-based",
+          "transitionStyle": "enthusiastic"
+        },
+        "conclusion": {
+          "style": "honest-verdict",
+          "ctaType": "product-question"
+        }
+      },
+      "samplePhrases": [
+        "찐템 인정!",
+        "솔직 후기 갑니다",
+        "이거 완전 대박",
+        "피부에 진짜 좋아요"
+      ],
+      "avoidPatterns": [
+        "제품 리뷰입니다",
+        "장단점은 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb007",
+      "name": "재테크블로거G",
+      "platform": "tistory",
+      "category": "재테크/투자",
+      "monthlyVisitors": 1900000,
+      "characteristics": {
+        "sentenceLength": { "average": 30, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 55, "casual": 45 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.25,
+        "hookStyle": "statistic",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "차트 분석",
+          "수익률 공개",
+          "비교 표",
+          "계산 예시"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "market-context",
+          "elements": ["current-situation", "common-mistake", "opportunity"]
+        },
+        "body": {
+          "structure": "analysis-based",
+          "subheadingStyle": "strategy-steps",
+          "transitionStyle": "logical"
+        },
+        "conclusion": {
+          "style": "action-summary",
+          "ctaType": "strategy-question"
+        }
+      },
+      "samplePhrases": [
+        "실제 수익 인증합니다",
+        "이건 진짜 숨은 기회예요",
+        "제 포트폴리오 공개",
+        "계산해보면"
+      ],
+      "avoidPatterns": [
+        "투자 방법을 알려드립니다",
+        "참고하시기 바랍니다"
+      ]
+    },
+    {
+      "id": "kb008",
+      "name": "건강블로거H",
+      "platform": "naver",
+      "category": "건강/웰빙",
+      "monthlyVisitors": 1700000,
+      "characteristics": {
+        "sentenceLength": { "average": 26, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.3,
+        "hookStyle": "question",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "전문가 인용",
+          "체크리스트",
+          "운동 동작 사진",
+          "효능 정리표"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "health-concern",
+          "elements": ["common-symptom", "underlying-cause", "solution-preview"]
+        },
+        "body": {
+          "structure": "cause-effect",
+          "subheadingStyle": "topic-based",
+          "transitionStyle": "informative"
+        },
+        "conclusion": {
+          "style": "lifestyle-tips",
+          "ctaType": "health-question"
+        }
+      },
+      "samplePhrases": [
+        "저도 이 증상 있었어요",
+        "전문가가 말하길",
+        "이건 꼭 알아두세요",
+        "효과 보고 공유해요"
+      ],
+      "avoidPatterns": [
+        "건강 정보입니다",
+        "주의사항을 알려드립니다"
+      ]
+    },
+    {
+      "id": "kb009",
+      "name": "인테리어블로거I",
+      "platform": "naver",
+      "category": "인테리어/홈",
+      "monthlyVisitors": 1400000,
+      "characteristics": {
+        "sentenceLength": { "average": 24, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 35, "casual": 65 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.5,
+        "hookStyle": "story",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "비포애프터 필수",
+          "구매 링크",
+          "평수별 팁",
+          "DIY 과정"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "transformation-tease",
+          "elements": ["before-pain", "vision", "result-hint"]
+        },
+        "body": {
+          "structure": "room-by-room",
+          "subheadingStyle": "space-based",
+          "transitionStyle": "visual"
+        },
+        "conclusion": {
+          "style": "shopping-guide",
+          "ctaType": "room-tour"
+        }
+      },
+      "samplePhrases": [
+        "이 공간이 이렇게 바뀌었어요",
+        "가성비 끝판왕",
+        "저도 처음에 고민했는데",
+        "이건 진짜 추천!"
+      ],
+      "avoidPatterns": [
+        "인테리어 후기입니다",
+        "참고하세요"
+      ]
+    },
+    {
+      "id": "kb010",
+      "name": "자동차블로거J",
+      "platform": "tistory",
+      "category": "자동차",
+      "monthlyVisitors": 1600000,
+      "characteristics": {
+        "sentenceLength": { "average": 28, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 50, "casual": 50 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.4,
+        "hookStyle": "statistic",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "스펙 비교표",
+          "실연비 테스트",
+          "주행 영상 링크",
+          "유지비 계산"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "car-reveal",
+          "elements": ["first-impression", "key-spec", "expectation"]
+        },
+        "body": {
+          "structure": "feature-based",
+          "subheadingStyle": "aspect-based",
+          "transitionStyle": "analytical"
+        },
+        "conclusion": {
+          "style": "buying-guide",
+          "ctaType": "model-question"
+        }
+      },
+      "samplePhrases": [
+        "실제 주행해보니",
+        "이 가격에 이 옵션?",
+        "현실 연비 공개",
+        "제 선택 이유는"
+      ],
+      "avoidPatterns": [
+        "자동차 리뷰입니다",
+        "사양은 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb011",
+      "name": "게임블로거K",
+      "platform": "tistory",
+      "category": "게임",
+      "monthlyVisitors": 2200000,
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 25, "casual": 75 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.4,
+        "hookStyle": "bold-statement",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "스크린샷 다수",
+          "공략 순서도",
+          "빌드 추천",
+          "패치 노트 분석"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "game-hype",
+          "elements": ["update-news", "meta-change", "tip-promise"]
+        },
+        "body": {
+          "structure": "guide-format",
+          "subheadingStyle": "chapter-based",
+          "transitionStyle": "gamer-tone"
+        },
+        "conclusion": {
+          "style": "meta-summary",
+          "ctaType": "build-question"
+        }
+      },
+      "samplePhrases": [
+        "이거 개사기 빌드",
+        "패치 후 체감",
+        "현 메타 필수템",
+        "이렇게 하면 클리어"
+      ],
+      "avoidPatterns": [
+        "공략을 알려드립니다",
+        "참고 바랍니다"
+      ]
+    },
+    {
+      "id": "kb012",
+      "name": "영화블로거L",
+      "platform": "naver",
+      "category": "영화/드라마",
+      "monthlyVisitors": 1300000,
+      "characteristics": {
+        "sentenceLength": { "average": 30, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 40, "casual": 60 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.35,
+        "hookStyle": "controversy",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "스포일러 경고",
+          "별점 시스템",
+          "명장면 캡처",
+          "OST 추천"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "review-hook",
+          "elements": ["rating-tease", "viewing-context", "genre-fans"]
+        },
+        "body": {
+          "structure": "review-aspects",
+          "subheadingStyle": "element-based",
+          "transitionStyle": "critical"
+        },
+        "conclusion": {
+          "style": "recommendation",
+          "ctaType": "rating-question"
+        }
+      },
+      "samplePhrases": [
+        "이 영화 진짜 보세요",
+        "결말 충격이었음",
+        "배우 연기 미쳤다",
+        "이 씬은 소름"
+      ],
+      "avoidPatterns": [
+        "영화 리뷰입니다",
+        "줄거리는 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb013",
+      "name": "독서블로거M",
+      "platform": "brunch",
+      "category": "독서/서평",
+      "monthlyVisitors": 800000,
+      "characteristics": {
+        "sentenceLength": { "average": 35, "variance": "low" },
+        "paragraphLength": { "average": 5, "max": 7 },
+        "toneProfile": { "formal": 65, "casual": 35 },
+        "emojiUsage": "none",
+        "imageRatio": 0.15,
+        "hookStyle": "quote",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "인용구 강조",
+          "개인적 해석",
+          "다른 책 연결",
+          "깊이 있는 분석"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "long",
+          "style": "literary",
+          "elements": ["quote-start", "context-setting", "personal-connection"]
+        },
+        "body": {
+          "structure": "thematic-analysis",
+          "subheadingStyle": "theme-based",
+          "transitionStyle": "reflective"
+        },
+        "conclusion": {
+          "style": "personal-takeaway",
+          "ctaType": "book-recommendation"
+        }
+      },
+      "samplePhrases": [
+        "이 문장에서 멈췄다",
+        "작가가 말하고자 하는",
+        "읽는 내내",
+        "다시 생각해보면"
+      ],
+      "avoidPatterns": [
+        "책 소개입니다",
+        "줄거리를 말씀드리면"
+      ]
+    },
+    {
+      "id": "kb014",
+      "name": "운동블로거N",
+      "platform": "naver",
+      "category": "운동/피트니스",
+      "monthlyVisitors": 1100000,
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 25, "casual": 75 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.45,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "인바디 공개",
+          "운동 동작 사진",
+          "루틴 표",
+          "식단 공개"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "transformation",
+          "elements": ["before-after", "struggle-share", "motivation"]
+        },
+        "body": {
+          "structure": "routine-based",
+          "subheadingStyle": "exercise-type",
+          "transitionStyle": "motivational"
+        },
+        "conclusion": {
+          "style": "encouragement",
+          "ctaType": "routine-share"
+        }
+      },
+      "samplePhrases": [
+        "한 달 만에 이 변화",
+        "이 운동이 진짜 효과 있어요",
+        "포기하지 마세요",
+        "오늘도 운동 완료!"
+      ],
+      "avoidPatterns": [
+        "운동 방법입니다",
+        "참고하시기 바랍니다"
+      ]
+    },
+    {
+      "id": "kb015",
+      "name": "반려동물블로거O",
+      "platform": "naver",
+      "category": "반려동물",
+      "monthlyVisitors": 950000,
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 4 },
+        "toneProfile": { "formal": 15, "casual": 85 },
+        "emojiUsage": "heavy",
+        "imageRatio": 0.55,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "귀여운 사진 다수",
+          "일상 브이로그 스타일",
+          "제품 리뷰",
+          "건강 정보"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "cute-story",
+          "elements": ["pet-moment", "emotion-share", "topic-intro"]
+        },
+        "body": {
+          "structure": "story-telling",
+          "subheadingStyle": "episode-based",
+          "transitionStyle": "affectionate"
+        },
+        "conclusion": {
+          "style": "pet-love",
+          "ctaType": "pet-photo-share"
+        }
+      },
+      "samplePhrases": [
+        "우리 아이가",
+        "너무 귀엽지 않나요?",
+        "집사 인증",
+        "오늘도 힐링"
+      ],
+      "avoidPatterns": [
+        "반려동물 정보입니다",
+        "도움이 되셨으면"
+      ]
+    },
+    {
+      "id": "kb016",
+      "name": "사진블로거P",
+      "platform": "tistory",
+      "category": "사진/카메라",
+      "monthlyVisitors": 720000,
+      "characteristics": {
+        "sentenceLength": { "average": 25, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 5 },
+        "toneProfile": { "formal": 50, "casual": 50 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.6,
+        "hookStyle": "curiosity-gap",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "원본 사진 공개",
+          "세팅값 공유",
+          "보정 전후",
+          "장비 리뷰"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "visual-hook",
+          "elements": ["best-shot", "location-info", "technique-tease"]
+        },
+        "body": {
+          "structure": "technique-based",
+          "subheadingStyle": "setting-based",
+          "transitionStyle": "technical"
+        },
+        "conclusion": {
+          "style": "gear-info",
+          "ctaType": "photo-share"
+        }
+      },
+      "samplePhrases": [
+        "이 세팅으로 촬영했어요",
+        "보정 없이 원본입니다",
+        "이 렌즈 추천!",
+        "출사 명소"
+      ],
+      "avoidPatterns": [
+        "사진 정보입니다",
+        "세팅값은 다음과 같습니다"
+      ]
+    },
+    {
+      "id": "kb017",
+      "name": "음악블로거Q",
+      "platform": "naver",
+      "category": "음악",
+      "monthlyVisitors": 680000,
+      "characteristics": {
+        "sentenceLength": { "average": 28, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.25,
+        "hookStyle": "quote",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "가사 해석",
+          "뮤비 캡처",
+          "앨범 리뷰",
+          "플레이리스트"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "music-emotion",
+          "elements": ["lyric-quote", "personal-memory", "recommendation"]
+        },
+        "body": {
+          "structure": "track-by-track",
+          "subheadingStyle": "song-titles",
+          "transitionStyle": "emotional"
+        },
+        "conclusion": {
+          "style": "playlist-curation",
+          "ctaType": "song-recommendation"
+        }
+      },
+      "samplePhrases": [
+        "이 가사가 울림이",
+        "무한 반복 중",
+        "이 노래 들으면",
+        "플리에 추가!"
+      ],
+      "avoidPatterns": [
+        "음악을 소개합니다",
+        "앨범 정보입니다"
+      ]
+    },
+    {
+      "id": "kb018",
+      "name": "부동산블로거R",
+      "platform": "naver",
+      "category": "부동산",
+      "monthlyVisitors": 2400000,
+      "characteristics": {
+        "sentenceLength": { "average": 32, "variance": "medium" },
+        "paragraphLength": { "average": 5, "max": 7 },
+        "toneProfile": { "formal": 60, "casual": 40 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.3,
+        "hookStyle": "statistic",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "시세 분석",
+          "임장 후기",
+          "정책 해설",
+          "지도 활용"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "market-analysis",
+          "elements": ["trend-data", "area-context", "insight-preview"]
+        },
+        "body": {
+          "structure": "data-driven",
+          "subheadingStyle": "factor-based",
+          "transitionStyle": "analytical"
+        },
+        "conclusion": {
+          "style": "investment-view",
+          "ctaType": "area-question"
+        }
+      },
+      "samplePhrases": [
+        "현장 다녀왔습니다",
+        "실거래가 기준으로",
+        "이 호재가",
+        "투자 가치로 보면"
+      ],
+      "avoidPatterns": [
+        "부동산 정보입니다",
+        "참고 바랍니다"
+      ]
+    },
+    {
+      "id": "kb019",
+      "name": "법률블로거S",
+      "platform": "naver",
+      "category": "법률/세무",
+      "monthlyVisitors": 890000,
+      "characteristics": {
+        "sentenceLength": { "average": 35, "variance": "low" },
+        "paragraphLength": { "average": 5, "max": 7 },
+        "toneProfile": { "formal": 75, "casual": 25 },
+        "emojiUsage": "none",
+        "imageRatio": 0.15,
+        "hookStyle": "problem",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "판례 인용",
+          "단계별 설명",
+          "체크리스트",
+          "서류 양식"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "case-based",
+          "elements": ["common-issue", "legal-context", "solution-outline"]
+        },
+        "body": {
+          "structure": "procedure-based",
+          "subheadingStyle": "step-based",
+          "transitionStyle": "professional"
+        },
+        "conclusion": {
+          "style": "practical-advice",
+          "ctaType": "consultation-offer"
+        }
+      },
+      "samplePhrases": [
+        "실제 사례로 설명드리면",
+        "법적으로 중요한 점은",
+        "이 경우에는",
+        "꼭 주의하세요"
+      ],
+      "avoidPatterns": [
+        "법률 정보입니다",
+        "참고용입니다"
+      ]
+    },
+    {
+      "id": "kb020",
+      "name": "교육블로거T",
+      "platform": "naver",
+      "category": "교육/학습",
+      "monthlyVisitors": 1050000,
+      "characteristics": {
+        "sentenceLength": { "average": 26, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 50, "casual": 50 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.3,
+        "hookStyle": "question",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "학습 자료 공유",
+          "경험담 중심",
+          "비교 분석",
+          "추천 리스트"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "parent-perspective",
+          "elements": ["concern-share", "experience-based", "solution-hint"]
+        },
+        "body": {
+          "structure": "comparison-based",
+          "subheadingStyle": "option-based",
+          "transitionStyle": "informative"
+        },
+        "conclusion": {
+          "style": "decision-guide",
+          "ctaType": "experience-share"
+        }
+      },
+      "samplePhrases": [
+        "아이 교육 고민이시라면",
+        "실제로 다녀보니",
+        "이 방법이 효과 있었어요",
+        "엄마표로도 가능해요"
+      ],
+      "avoidPatterns": [
+        "교육 정보입니다",
+        "도움이 되시길"
+      ]
+    }
+  ]
+}

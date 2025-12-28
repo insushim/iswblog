@@ -1,0 +1,771 @@
+{
+  "bloggers": [
+    {
+      "id": "seth-godin",
+      "name": "Seth Godin",
+      "platform": "WordPress",
+      "niche": "마케팅/비즈니스",
+      "subscribers": 1000000,
+      "avgViews": 500000,
+      "writingStyle": {
+        "toneDescription": "간결하고 도발적인 통찰력, 짧지만 강렬한 메시지 전달",
+        "sentenceStructure": "초단문 위주, 한 문장이 하나의 단락인 경우 많음",
+        "paragraphLength": "1-3문장의 초단락 구조",
+        "vocabularyLevel": "일상적 어휘로 깊은 개념 설명",
+        "emotionalTone": "도전적이고 영감을 주는"
+      },
+      "characteristics": {
+        "hookStyle": "상식을 뒤집는 질문이나 선언으로 시작",
+        "storytellingMethod": "비유와 은유 중심의 개념 전달",
+        "ctaStyle": "행동 촉구보다 사고 전환 유도",
+        "imageUsage": "텍스트 중심, 이미지 최소화",
+        "specialPatterns": ["Permission Marketing", "Purple Cow", "Tribe 개념", "Ship It 철학"]
+      },
+      "contentStructure": {
+        "typicalLength": 300,
+        "headingStyle": "제목 없이 본문만",
+        "bulletPointUsage": "거의 사용하지 않음",
+        "conclusionStyle": "열린 결말, 독자가 생각하게 만듦"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 흐름 우선",
+        "metaDescriptionStyle": "핵심 메시지 한 줄 요약",
+        "internalLinkingPattern": "관련 글 언급 없이 독립적"
+      },
+      "signature": {
+        "openingPatterns": ["What if...", "The thing is...", "Here's the deal:"],
+        "closingPatterns": ["Go make a ruckus.", "Ship it.", "What are you waiting for?"],
+        "transitionPhrases": ["And yet...", "The alternative:", "Consider this:"],
+        "brandVoiceKeywords": ["remarkable", "tribe", "permission", "linchpin", "ship"]
+      }
+    },
+    {
+      "id": "neil-patel",
+      "name": "Neil Patel",
+      "platform": "WordPress",
+      "niche": "디지털마케팅/SEO",
+      "subscribers": 2000000,
+      "avgViews": 800000,
+      "writingStyle": {
+        "toneDescription": "데이터 기반의 실용적 조언, 친근하면서도 전문적",
+        "sentenceStructure": "중간 길이 문장, 명확한 설명 중심",
+        "paragraphLength": "3-5문장의 읽기 쉬운 단락",
+        "vocabularyLevel": "전문 용어와 쉬운 설명 병행",
+        "emotionalTone": "확신에 찬 전문가 톤"
+      },
+      "characteristics": {
+        "hookStyle": "충격적인 통계나 결과로 시작",
+        "storytellingMethod": "성공/실패 케이스 스터디 중심",
+        "ctaStyle": "구체적 행동 단계 제시",
+        "imageUsage": "차트, 그래프, 스크린샷 적극 활용",
+        "specialPatterns": ["숫자 기반 제목", "Step-by-step 가이드", "도구 리스트", "Before/After 비교"]
+      },
+      "contentStructure": {
+        "typicalLength": 5000,
+        "headingStyle": "H2-H3 체계적 사용, 질문형 포함",
+        "bulletPointUsage": "핵심 포인트 정리에 적극 활용",
+        "conclusionStyle": "핵심 요약 + 즉시 실행 가능한 팁"
+      },
+      "seoApproach": {
+        "keywordDensity": "전략적 배치, 1-2%",
+        "metaDescriptionStyle": "혜택 중심의 클릭 유도",
+        "internalLinkingPattern": "관련 글 5-10개 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Did you know that...", "I've analyzed X websites...", "Here's what nobody tells you:"],
+        "closingPatterns": ["Now it's your turn.", "Let me know in the comments.", "Which tip will you try first?"],
+        "transitionPhrases": ["Here's the thing:", "But wait, there's more:", "Let me show you:"],
+        "brandVoiceKeywords": ["traffic", "ranking", "conversion", "growth", "strategy"]
+      }
+    },
+    {
+      "id": "brian-dean",
+      "name": "Brian Dean",
+      "platform": "WordPress",
+      "niche": "SEO/링크빌딩",
+      "subscribers": 500000,
+      "avgViews": 300000,
+      "writingStyle": {
+        "toneDescription": "친근하면서 권위있는, 마치 친구가 비밀을 알려주는 듯한",
+        "sentenceStructure": "짧고 펀치력 있는 문장들",
+        "paragraphLength": "1-3문장의 스캔하기 좋은 구조",
+        "vocabularyLevel": "전문 용어 사용 시 항상 설명 추가",
+        "emotionalTone": "격려하고 동기부여하는"
+      },
+      "characteristics": {
+        "hookStyle": "놀라운 결과나 발견으로 시작",
+        "storytellingMethod": "자신의 실험과 결과 공유",
+        "ctaStyle": "무료 리소스 다운로드 유도",
+        "imageUsage": "커스텀 일러스트레이션과 스크린샷",
+        "specialPatterns": ["Skyscraper Technique", "Definitive Guide", "Case Study 형식", "Pro Tip 박스"]
+      },
+      "contentStructure": {
+        "typicalLength": 4000,
+        "headingStyle": "명확한 계층 구조, 숫자 포함",
+        "bulletPointUsage": "체크리스트와 요약에 활용",
+        "conclusionStyle": "액션 아이템과 다음 단계 제시"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 LSI 키워드 활용",
+        "metaDescriptionStyle": "결과 중심의 호기심 유발",
+        "internalLinkingPattern": "콘텐츠 허브 구조"
+      },
+      "signature": {
+        "openingPatterns": ["In this post, you'll learn...", "Here's the deal:", "Let me show you exactly how..."],
+        "closingPatterns": ["Now I'd like to hear from you:", "Your turn:", "Leave a comment below."],
+        "transitionPhrases": ["With that, let's...", "Here's why this works:", "Pro Tip:"],
+        "brandVoiceKeywords": ["backlinks", "rank", "organic traffic", "technique", "strategy"]
+      }
+    },
+    {
+      "id": "tim-ferriss",
+      "name": "Tim Ferriss",
+      "platform": "WordPress",
+      "niche": "라이프스타일/생산성",
+      "subscribers": 3000000,
+      "avgViews": 600000,
+      "writingStyle": {
+        "toneDescription": "실험적이고 분석적인, 삶을 해킹하는 관점",
+        "sentenceStructure": "중간~긴 문장, 세부 사항 풍부",
+        "paragraphLength": "4-6문장의 깊이 있는 단락",
+        "vocabularyLevel": "다양한 분야의 전문 용어 혼합",
+        "emotionalTone": "호기심을 자극하는"
+      },
+      "characteristics": {
+        "hookStyle": "반직관적 발견이나 질문",
+        "storytellingMethod": "유명인 인터뷰와 개인 실험 결합",
+        "ctaStyle": "5-Bullet Friday 뉴스레터 가입",
+        "imageUsage": "인터뷰 대상 사진, 제품 이미지",
+        "specialPatterns": ["4-Hour 시리즈 개념", "Fear-Setting", "Morning Routine", "Top 1% 습관"]
+      },
+      "contentStructure": {
+        "typicalLength": 3000,
+        "headingStyle": "흥미로운 질문이나 도전적 진술",
+        "bulletPointUsage": "핵심 교훈과 리소스 정리",
+        "conclusionStyle": "독자 참여 유도 질문"
+      },
+      "seoApproach": {
+        "keywordDensity": "콘텐츠 품질 우선",
+        "metaDescriptionStyle": "독특한 관점 강조",
+        "internalLinkingPattern": "관련 팟캐스트 에피소드 연결"
+      },
+      "signature": {
+        "openingPatterns": ["What if you could...", "This is a post about...", "I recently discovered..."],
+        "closingPatterns": ["Your thoughts?", "Please share in the comments.", "Pura vida."],
+        "transitionPhrases": ["The point is:", "Here's the kicker:", "What does this mean for you?"],
+        "brandVoiceKeywords": ["optimize", "hack", "deconstruct", "world-class", "meta-learning"]
+      }
+    },
+    {
+      "id": "marie-forleo",
+      "name": "Marie Forleo",
+      "platform": "WordPress",
+      "niche": "비즈니스/자기계발",
+      "subscribers": 800000,
+      "avgViews": 400000,
+      "writingStyle": {
+        "toneDescription": "에너지 넘치고 격려하는, 솔직하면서 세련된",
+        "sentenceStructure": "활기찬 짧은~중간 문장",
+        "paragraphLength": "2-4문장의 리듬감 있는 구조",
+        "vocabularyLevel": "접근하기 쉬운 언어로 깊은 주제",
+        "emotionalTone": "힘을 북돋우는, 진정성 있는"
+      },
+      "characteristics": {
+        "hookStyle": "고민하는 상황 공감으로 시작",
+        "storytellingMethod": "개인 경험과 고객 성공 사례",
+        "ctaStyle": "B-School 프로그램 연결",
+        "imageUsage": "밝고 세련된 브랜드 이미지",
+        "specialPatterns": ["Everything is Figureoutable", "MarieTV 연결", "Q&A Tuesday", "Before & After 스토리"]
+      },
+      "contentStructure": {
+        "typicalLength": 1500,
+        "headingStyle": "친근하고 대화하는 듯한",
+        "bulletPointUsage": "핵심 포인트 강조",
+        "conclusionStyle": "영감을 주는 마무리와 CTA"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 대화체 유지",
+        "metaDescriptionStyle": "변화의 가능성 강조",
+        "internalLinkingPattern": "관련 비디오 콘텐츠 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Have you ever felt...", "Here's the truth:", "Let's talk about..."],
+        "closingPatterns": ["Now I want to hear from you:", "The world needs that special gift that only you have.", "You've got this."],
+        "transitionPhrases": ["Here's the deal:", "But wait – there's more:", "And here's why:"],
+        "brandVoiceKeywords": ["figureoutable", "hustle", "heart", "dream", "action"]
+      }
+    },
+    {
+      "id": "james-clear",
+      "name": "James Clear",
+      "platform": "WordPress",
+      "niche": "습관/생산성",
+      "subscribers": 2000000,
+      "avgViews": 700000,
+      "writingStyle": {
+        "toneDescription": "과학적이면서 접근하기 쉬운, 명료하고 실용적인",
+        "sentenceStructure": "간결하고 명확한 문장",
+        "paragraphLength": "2-4문장의 논리적 단락",
+        "vocabularyLevel": "복잡한 연구를 쉬운 언어로",
+        "emotionalTone": "차분하고 설득력 있는"
+      },
+      "characteristics": {
+        "hookStyle": "과학적 연구나 역사적 일화로 시작",
+        "storytellingMethod": "연구 결과와 실제 사례 결합",
+        "ctaStyle": "3-2-1 뉴스레터 가입",
+        "imageUsage": "개념 설명 다이어그램",
+        "specialPatterns": ["Atomic Habits 개념", "1% 개선", "습관 스태킹", "환경 디자인"]
+      },
+      "contentStructure": {
+        "typicalLength": 2000,
+        "headingStyle": "명확하고 구체적인 약속",
+        "bulletPointUsage": "핵심 원칙 정리",
+        "conclusionStyle": "실행 가능한 핵심 메시지"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 주제 연관성",
+        "metaDescriptionStyle": "명확한 혜택 제시",
+        "internalLinkingPattern": "주제별 클러스터링"
+      },
+      "signature": {
+        "openingPatterns": ["In [year], [person] discovered...", "Here's the thing about habits:", "Let me tell you a story about..."],
+        "closingPatterns": ["The key takeaway:", "Thanks for reading.", "Until next time."],
+        "transitionPhrases": ["But here's the interesting part:", "The lesson:", "What we can learn:"],
+        "brandVoiceKeywords": ["atomic", "habits", "systems", "identity", "compound"]
+      }
+    },
+    {
+      "id": "gary-vaynerchuk",
+      "name": "Gary Vaynerchuk",
+      "platform": "Medium",
+      "niche": "기업가정신/소셜미디어",
+      "subscribers": 5000000,
+      "avgViews": 1000000,
+      "writingStyle": {
+        "toneDescription": "직설적이고 열정적인, 거침없이 솔직한",
+        "sentenceStructure": "짧고 강렬한 문장, 구어체",
+        "paragraphLength": "1-2문장의 펀치력 있는 단락",
+        "vocabularyLevel": "일상 대화 수준, 비속어 포함",
+        "emotionalTone": "강렬하고 동기부여하는"
+      },
+      "characteristics": {
+        "hookStyle": "도발적 선언이나 현실 직시",
+        "storytellingMethod": "자신의 성공/실패 경험",
+        "ctaStyle": "소셜 미디어 팔로우 유도",
+        "imageUsage": "강렬한 인용구 이미지",
+        "specialPatterns": ["Hustle 철학", "Patience + Speed", "Document Don't Create", "Jab Jab Hook"]
+      },
+      "contentStructure": {
+        "typicalLength": 800,
+        "headingStyle": "도발적이고 관심 끄는",
+        "bulletPointUsage": "핵심 메시지만 간략히",
+        "conclusionStyle": "강력한 행동 촉구"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 대화 흐름",
+        "metaDescriptionStyle": "도전적 메시지",
+        "internalLinkingPattern": "소셜 미디어 플랫폼 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Look.", "Here's the thing:", "Let me be real with you:"],
+        "closingPatterns": ["Now go execute.", "Stop reading and start doing.", "What's your excuse?"],
+        "transitionPhrases": ["And that's the truth.", "Period.", "End of story."],
+        "brandVoiceKeywords": ["hustle", "execute", "patience", "self-awareness", "legacy"]
+      }
+    },
+    {
+      "id": "mark-manson",
+      "name": "Mark Manson",
+      "platform": "WordPress",
+      "niche": "자기계발/인생철학",
+      "subscribers": 1500000,
+      "avgViews": 500000,
+      "writingStyle": {
+        "toneDescription": "솔직하고 유머러스한, 반전통적 자기계발",
+        "sentenceStructure": "대화하듯 자연스러운 문장",
+        "paragraphLength": "3-5문장의 스토리텔링 구조",
+        "vocabularyLevel": "일상 언어에 철학 개념 녹임",
+        "emotionalTone": "냉소적이면서 따뜻한"
+      },
+      "characteristics": {
+        "hookStyle": "불편한 진실이나 역설로 시작",
+        "storytellingMethod": "개인 경험과 심리학 연구 결합",
+        "ctaStyle": "뉴스레터 '내 생각 정리' 가입",
+        "imageUsage": "미니멀한 일러스트레이션",
+        "specialPatterns": ["F*ck 시리즈 개념", "Feedback Loop from Hell", "Not Giving a F*ck", "Values 탐구"]
+      },
+      "contentStructure": {
+        "typicalLength": 2500,
+        "headingStyle": "도발적이고 호기심 자극",
+        "bulletPointUsage": "핵심 개념 정리에 간략히",
+        "conclusionStyle": "생각할 거리를 던지는 열린 결말"
+      },
+      "seoApproach": {
+        "keywordDensity": "콘텐츠 흐름 중심",
+        "metaDescriptionStyle": "반전통적 관점 강조",
+        "internalLinkingPattern": "주제별 시리즈 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Here's something nobody wants to hear:", "The problem is...", "Let me tell you something:"],
+        "closingPatterns": ["And that's okay.", "Think about it.", "Your call."],
+        "transitionPhrases": ["But here's the thing:", "And that's the point:", "The irony is:"],
+        "brandVoiceKeywords": ["values", "meaning", "struggle", "honest", "uncomfortable"]
+      }
+    },
+    {
+      "id": "pat-flynn",
+      "name": "Pat Flynn",
+      "platform": "WordPress",
+      "niche": "온라인비즈니스/패시브인컴",
+      "subscribers": 600000,
+      "avgViews": 250000,
+      "writingStyle": {
+        "toneDescription": "친근하고 투명한, 실패도 공유하는 정직함",
+        "sentenceStructure": "자연스럽고 대화하는 듯한 문장",
+        "paragraphLength": "3-4문장의 스토리 중심 구조",
+        "vocabularyLevel": "초보자도 이해하기 쉬운",
+        "emotionalTone": "격려하고 지지하는"
+      },
+      "characteristics": {
+        "hookStyle": "개인적 도전이나 발견으로 시작",
+        "storytellingMethod": "투명한 소득 보고서와 실험",
+        "ctaStyle": "무료 리소스와 팟캐스트 연결",
+        "imageUsage": "친근한 사진과 프로세스 이미지",
+        "specialPatterns": ["Income Report", "Smart Passive Income", "Will It Fly 프레임워크", "Superfan 전략"]
+      },
+      "contentStructure": {
+        "typicalLength": 2500,
+        "headingStyle": "친근하고 명확한 가이드형",
+        "bulletPointUsage": "단계별 프로세스 설명에 활용",
+        "conclusionStyle": "다음 행동 단계 제시"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 주제 연관성",
+        "metaDescriptionStyle": "구체적 혜택 약속",
+        "internalLinkingPattern": "리소스와 도구 연결"
+      },
+      "signature": {
+        "openingPatterns": ["I want to share something with you:", "A few years ago, I...", "Let me be honest:"],
+        "closingPatterns": ["Cheers!", "I'm rooting for you.", "Let me know how it goes!"],
+        "transitionPhrases": ["Here's the deal:", "But wait:", "The cool thing is:"],
+        "brandVoiceKeywords": ["passive income", "serve", "superfan", "authentic", "experiment"]
+      }
+    },
+    {
+      "id": "ramit-sethi",
+      "name": "Ramit Sethi",
+      "platform": "WordPress",
+      "niche": "개인재정/커리어",
+      "subscribers": 1000000,
+      "avgViews": 400000,
+      "writingStyle": {
+        "toneDescription": "직설적이고 도전적인, 행동 촉구하는",
+        "sentenceStructure": "강렬하고 설득력 있는 문장",
+        "paragraphLength": "2-4문장의 논리적 구조",
+        "vocabularyLevel": "전문적이지만 명확한",
+        "emotionalTone": "도전적이면서 지지하는"
+      },
+      "characteristics": {
+        "hookStyle": "일반 상식 뒤집기",
+        "storytellingMethod": "학생 성공 사례와 스크립트 제공",
+        "ctaStyle": "프리미엄 코스 연결",
+        "imageUsage": "브랜드 컬러 강조 그래픽",
+        "specialPatterns": ["Rich Life 개념", "Script 기반 협상", "Invisible Scripts", "Big Wins 집중"]
+      },
+      "contentStructure": {
+        "typicalLength": 3000,
+        "headingStyle": "도발적이고 약속하는",
+        "bulletPointUsage": "핵심 스크립트와 전략 정리",
+        "conclusionStyle": "즉각적 행동 촉구"
+      },
+      "seoApproach": {
+        "keywordDensity": "전략적 배치",
+        "metaDescriptionStyle": "결과 중심의 약속",
+        "internalLinkingPattern": "프로그램과 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Let's cut the BS:", "Here's what nobody tells you:", "I'm going to show you exactly..."],
+        "closingPatterns": ["Now go take action.", "Which strategy will you use first?", "Your move."],
+        "transitionPhrases": ["Here's the truth:", "But here's the thing:", "Watch this:"],
+        "brandVoiceKeywords": ["rich life", "script", "negotiate", "systems", "automation"]
+      }
+    },
+    {
+      "id": "brene-brown",
+      "name": "Brené Brown",
+      "platform": "WordPress",
+      "niche": "리더십/취약성",
+      "subscribers": 2000000,
+      "avgViews": 500000,
+      "writingStyle": {
+        "toneDescription": "따뜻하고 학문적인, 연구와 스토리의 조화",
+        "sentenceStructure": "사려 깊고 의도적인 문장",
+        "paragraphLength": "4-6문장의 깊이 있는 단락",
+        "vocabularyLevel": "연구 기반 용어와 일상 언어 조화",
+        "emotionalTone": "공감적이고 용기를 북돋는"
+      },
+      "characteristics": {
+        "hookStyle": "연구 발견이나 개인적 깨달음",
+        "storytellingMethod": "연구 데이터와 개인 취약성 공유",
+        "ctaStyle": "책과 TED 토크 연결",
+        "imageUsage": "영감을 주는 인용구 이미지",
+        "specialPatterns": ["Daring Greatly 개념", "Vulnerability is Strength", "Shame Resilience", "Wholehearted Living"]
+      },
+      "contentStructure": {
+        "typicalLength": 1500,
+        "headingStyle": "의미 있고 성찰적인",
+        "bulletPointUsage": "핵심 연구 발견 정리",
+        "conclusionStyle": "개인적 성찰과 초대"
+      },
+      "seoApproach": {
+        "keywordDensity": "내용 중심 자연스러운",
+        "metaDescriptionStyle": "변화의 가능성 제시",
+        "internalLinkingPattern": "연구와 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["In my research, I discovered...", "Here's what I've learned:", "Let me share something personal:"],
+        "closingPatterns": ["What do you think?", "I'd love to hear your thoughts.", "With gratitude."],
+        "transitionPhrases": ["And here's what I know for sure:", "The research shows:", "What I've come to believe:"],
+        "brandVoiceKeywords": ["vulnerability", "courage", "shame", "belonging", "wholehearted"]
+      }
+    },
+    {
+      "id": "ann-handley",
+      "name": "Ann Handley",
+      "platform": "WordPress",
+      "niche": "콘텐츠마케팅/글쓰기",
+      "subscribers": 400000,
+      "avgViews": 150000,
+      "writingStyle": {
+        "toneDescription": "위트 있고 따뜻한, 전문적이면서 접근하기 쉬운",
+        "sentenceStructure": "리드미컬하고 재치 있는 문장",
+        "paragraphLength": "3-4문장의 읽기 좋은 구조",
+        "vocabularyLevel": "세련되면서 명확한",
+        "emotionalTone": "유머러스하고 격려하는"
+      },
+      "characteristics": {
+        "hookStyle": "재치 있는 관찰이나 의외의 비유",
+        "storytellingMethod": "개인 경험과 마케팅 인사이트 결합",
+        "ctaStyle": "뉴스레터 Total Annarchy 가입",
+        "imageUsage": "유머러스한 GIF와 일러스트",
+        "specialPatterns": ["Everybody Writes 원칙", "12 Word Tip", "Sunday Letter 형식", "Writing Rebel 정신"]
+      },
+      "contentStructure": {
+        "typicalLength": 1200,
+        "headingStyle": "재치 있고 흥미로운",
+        "bulletPointUsage": "핵심 팁 정리에 활용",
+        "conclusionStyle": "행동 촉구와 유머 결합"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 흐름 유지",
+        "metaDescriptionStyle": "재치와 가치 결합",
+        "internalLinkingPattern": "관련 글과 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["So here's the thing:", "Can we talk about...", "Let me tell you a story:"],
+        "closingPatterns": ["Write on!", "Your turn.", "Go make something today."],
+        "transitionPhrases": ["But here's the twist:", "And this is key:", "The point is:"],
+        "brandVoiceKeywords": ["writing", "content", "story", "rebel", "human"]
+      }
+    },
+    {
+      "id": "ryan-holiday",
+      "name": "Ryan Holiday",
+      "platform": "WordPress",
+      "niche": "스토아철학/자기계발",
+      "subscribers": 800000,
+      "avgViews": 300000,
+      "writingStyle": {
+        "toneDescription": "학문적이면서 실용적인, 역사와 철학의 현대적 적용",
+        "sentenceStructure": "명확하고 사려 깊은 문장",
+        "paragraphLength": "3-5문장의 논리적 전개",
+        "vocabularyLevel": "고급 어휘와 역사적 참조",
+        "emotionalTone": "차분하고 지혜로운"
+      },
+      "characteristics": {
+        "hookStyle": "역사적 일화나 스토아 인용문",
+        "storytellingMethod": "고대 지혜와 현대 적용 연결",
+        "ctaStyle": "Daily Stoic 뉴스레터 가입",
+        "imageUsage": "역사적 인물 이미지와 인용문",
+        "specialPatterns": ["Obstacle is the Way", "Ego is the Enemy", "Stillness is the Key", "Daily Stoic 명상"]
+      },
+      "contentStructure": {
+        "typicalLength": 1500,
+        "headingStyle": "철학적이고 명상적인",
+        "bulletPointUsage": "핵심 교훈 정리",
+        "conclusionStyle": "성찰을 위한 질문"
+      },
+      "seoApproach": {
+        "keywordDensity": "콘텐츠 깊이 우선",
+        "metaDescriptionStyle": "고대 지혜의 현대적 의미",
+        "internalLinkingPattern": "책과 뉴스레터 연결"
+      },
+      "signature": {
+        "openingPatterns": ["Marcus Aurelius once said...", "In ancient Rome...", "The Stoics believed..."],
+        "closingPatterns": ["This is what we must remember.", "The choice is yours.", "Memento mori."],
+        "transitionPhrases": ["And this is the key:", "The lesson:", "What we can learn:"],
+        "brandVoiceKeywords": ["stoic", "obstacle", "ego", "stillness", "virtue"]
+      }
+    },
+    {
+      "id": "amy-porterfield",
+      "name": "Amy Porterfield",
+      "platform": "WordPress",
+      "niche": "온라인코스/디지털마케팅",
+      "subscribers": 500000,
+      "avgViews": 200000,
+      "writingStyle": {
+        "toneDescription": "친근하고 체계적인, 단계별 가이드 전문",
+        "sentenceStructure": "명확하고 실행 가능한 문장",
+        "paragraphLength": "2-4문장의 스캔하기 좋은 구조",
+        "vocabularyLevel": "초보자 친화적 설명",
+        "emotionalTone": "지지하고 격려하는"
+      },
+      "characteristics": {
+        "hookStyle": "고민 공감과 해결책 제시",
+        "storytellingMethod": "학생 성공 사례와 단계별 가이드",
+        "ctaStyle": "웨비나와 치트시트 제공",
+        "imageUsage": "프로세스 도해와 체크리스트",
+        "specialPatterns": ["Digital Course Academy", "List Building", "Webinar 전략", "Email List 성장"]
+      },
+      "contentStructure": {
+        "typicalLength": 2000,
+        "headingStyle": "명확한 단계와 약속",
+        "bulletPointUsage": "체크리스트와 액션 아이템",
+        "conclusionStyle": "다음 단계와 리소스 연결"
+      },
+      "seoApproach": {
+        "keywordDensity": "전략적 배치",
+        "metaDescriptionStyle": "구체적 결과 약속",
+        "internalLinkingPattern": "팟캐스트와 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["If you've ever wondered...", "I get it.", "Let me walk you through..."],
+        "closingPatterns": ["You've got this!", "Now it's your turn.", "I'm cheering you on!"],
+        "transitionPhrases": ["Here's the thing:", "Step by step:", "The key is:"],
+        "brandVoiceKeywords": ["course", "list building", "launch", "webinar", "freedom"]
+      }
+    },
+    {
+      "id": "cal-newport",
+      "name": "Cal Newport",
+      "platform": "WordPress",
+      "niche": "딥워크/생산성",
+      "subscribers": 600000,
+      "avgViews": 250000,
+      "writingStyle": {
+        "toneDescription": "학문적이고 분석적인, 연구 기반 깊이",
+        "sentenceStructure": "복잡한 아이디어의 명확한 전개",
+        "paragraphLength": "4-6문장의 논증적 구조",
+        "vocabularyLevel": "학술적이면서 접근 가능한",
+        "emotionalTone": "사려 깊고 도전적인"
+      },
+      "characteristics": {
+        "hookStyle": "반직관적 관찰이나 연구 발견",
+        "storytellingMethod": "케이스 스터디와 이론 결합",
+        "ctaStyle": "책과 뉴스레터 연결",
+        "imageUsage": "개념 다이어그램 중심",
+        "specialPatterns": ["Deep Work 개념", "Digital Minimalism", "So Good They Can't Ignore You", "Time Block Planner"]
+      },
+      "contentStructure": {
+        "typicalLength": 1500,
+        "headingStyle": "학문적이고 명확한",
+        "bulletPointUsage": "핵심 원칙 요약",
+        "conclusionStyle": "실용적 적용 방안 제시"
+      },
+      "seoApproach": {
+        "keywordDensity": "콘텐츠 깊이 중심",
+        "metaDescriptionStyle": "핵심 개념 요약",
+        "internalLinkingPattern": "관련 연구와 글 연결"
+      },
+      "signature": {
+        "openingPatterns": ["I've been thinking about...", "Here's an observation:", "Consider the following:"],
+        "closingPatterns": ["What do you think?", "More to come on this.", "Stay focused."],
+        "transitionPhrases": ["The key insight:", "But here's what's interesting:", "This matters because:"],
+        "brandVoiceKeywords": ["deep work", "focus", "shallow", "concentration", "craft"]
+      }
+    },
+    {
+      "id": "jon-morrow",
+      "name": "Jon Morrow",
+      "platform": "WordPress",
+      "niche": "블로깅/온라인글쓰기",
+      "subscribers": 300000,
+      "avgViews": 150000,
+      "writingStyle": {
+        "toneDescription": "강렬하고 감정적인, 스토리텔링의 대가",
+        "sentenceStructure": "드라마틱하고 리드미컬한 문장",
+        "paragraphLength": "1-3문장의 영화적 구조",
+        "vocabularyLevel": "생생하고 감각적인 표현",
+        "emotionalTone": "강렬하고 영감을 주는"
+      },
+      "characteristics": {
+        "hookStyle": "강렬한 첫 문장으로 즉시 몰입",
+        "storytellingMethod": "개인적 역경 극복 스토리",
+        "ctaStyle": "Headline Hacks와 무료 리소스",
+        "imageUsage": "감정을 자극하는 이미지",
+        "specialPatterns": ["Headline Formulas", "Emotional Writing", "Pain to Power 구조", "On Writing Well"]
+      },
+      "contentStructure": {
+        "typicalLength": 3000,
+        "headingStyle": "감정적이고 호기심 자극",
+        "bulletPointUsage": "핵심 공식과 팁 정리",
+        "conclusionStyle": "행동 촉구와 영감 결합"
+      },
+      "seoApproach": {
+        "keywordDensity": "스토리 흐름 우선",
+        "metaDescriptionStyle": "감정적 후크",
+        "internalLinkingPattern": "관련 글과 코스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["On [date], [dramatic event happened].", "I was [emotional state].", "They told me I would never..."],
+        "closingPatterns": ["Now it's your turn.", "Go write something that matters.", "The world is waiting."],
+        "transitionPhrases": ["And then something happened:", "Here's the truth:", "But I learned:"],
+        "brandVoiceKeywords": ["headline", "traffic", "viral", "emotion", "unstoppable"]
+      }
+    },
+    {
+      "id": "michael-hyatt",
+      "name": "Michael Hyatt",
+      "platform": "WordPress",
+      "niche": "리더십/생산성",
+      "subscribers": 500000,
+      "avgViews": 180000,
+      "writingStyle": {
+        "toneDescription": "성숙하고 멘토링하는, 경험에서 우러나는 지혜",
+        "sentenceStructure": "명확하고 설득력 있는 문장",
+        "paragraphLength": "3-4문장의 논리적 구조",
+        "vocabularyLevel": "비즈니스 전문적이면서 명확한",
+        "emotionalTone": "격려하고 안내하는"
+      },
+      "characteristics": {
+        "hookStyle": "문제 제기와 해결 약속",
+        "storytellingMethod": "리더십 경험과 프레임워크 공유",
+        "ctaStyle": "Full Focus Planner와 코스 연결",
+        "imageUsage": "프레임워크와 다이어그램",
+        "specialPatterns": ["Full Focus 시스템", "Best Year Ever", "Free to Focus", "Leader Box"]
+      },
+      "contentStructure": {
+        "typicalLength": 1800,
+        "headingStyle": "명확한 프레임워크 제시",
+        "bulletPointUsage": "단계와 원칙 정리",
+        "conclusionStyle": "실행 계획과 리소스 연결"
+      },
+      "seoApproach": {
+        "keywordDensity": "전략적 배치",
+        "metaDescriptionStyle": "결과 중심 약속",
+        "internalLinkingPattern": "제품과 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["As leaders, we often...", "I've learned that...", "Here's what I know for sure:"],
+        "closingPatterns": ["Now it's your turn.", "What will you do differently?", "Lead well."],
+        "transitionPhrases": ["Here's the framework:", "The key is:", "Let me explain:"],
+        "brandVoiceKeywords": ["focus", "planner", "leader", "intentional", "productivity"]
+      }
+    },
+    {
+      "id": "gretchen-rubin",
+      "name": "Gretchen Rubin",
+      "platform": "WordPress",
+      "niche": "행복/습관",
+      "subscribers": 400000,
+      "avgViews": 120000,
+      "writingStyle": {
+        "toneDescription": "탐구적이고 관찰력 있는, 일상의 지혜 발견",
+        "sentenceStructure": "사색적이고 읽기 편한 문장",
+        "paragraphLength": "3-4문장의 대화하는 듯한 구조",
+        "vocabularyLevel": "세련되면서 접근하기 쉬운",
+        "emotionalTone": "호기심 있고 공감하는"
+      },
+      "characteristics": {
+        "hookStyle": "일상적 관찰이나 질문",
+        "storytellingMethod": "자기 실험과 연구 결합",
+        "ctaStyle": "Happiness Podcast와 Quiz 연결",
+        "imageUsage": "따뜻하고 일상적인 이미지",
+        "specialPatterns": ["Four Tendencies", "Happiness Project", "Better Than Before", "Secret of Adulthood"]
+      },
+      "contentStructure": {
+        "typicalLength": 1000,
+        "headingStyle": "호기심 자극하는 질문형",
+        "bulletPointUsage": "인사이트와 팁 정리",
+        "conclusionStyle": "독자 참여 유도 질문"
+      },
+      "seoApproach": {
+        "keywordDensity": "자연스러운 흐름",
+        "metaDescriptionStyle": "호기심 자극",
+        "internalLinkingPattern": "Quiz와 리소스 연결"
+      },
+      "signature": {
+        "openingPatterns": ["I've been thinking about...", "Here's something I noticed:", "Do you ever wonder..."],
+        "closingPatterns": ["What do you think?", "I'd love to hear from you.", "Have you found this to be true?"],
+        "transitionPhrases": ["And this is interesting:", "What I've learned:", "The thing is:"],
+        "brandVoiceKeywords": ["happiness", "habits", "tendencies", "better", "everyday"]
+      }
+    },
+    {
+      "id": "derek-sivers",
+      "name": "Derek Sivers",
+      "platform": "WordPress",
+      "niche": "기업가정신/미니멀라이프",
+      "subscribers": 300000,
+      "avgViews": 100000,
+      "writingStyle": {
+        "toneDescription": "극도로 간결하고 명료한, 미니멀리스트 글쓰기",
+        "sentenceStructure": "짧고 핵심만 담은 문장",
+        "paragraphLength": "1-2문장의 초간결 구조",
+        "vocabularyLevel": "가장 단순한 표현 선택",
+        "emotionalTone": "차분하고 성찰적인"
+      },
+      "characteristics": {
+        "hookStyle": "반직관적 진술",
+        "storytellingMethod": "자신의 실험과 결정 공유",
+        "ctaStyle": "책 Now Thoughts와 Directives",
+        "imageUsage": "거의 없음, 순수 텍스트",
+        "specialPatterns": ["Hell Yes or No", "Keep Your Goals Secret", "Obvious to You", "Tech Independence"]
+      },
+      "contentStructure": {
+        "typicalLength": 500,
+        "headingStyle": "없거나 단순한 제목",
+        "bulletPointUsage": "거의 사용하지 않음",
+        "conclusionStyle": "열린 결말, 생각 여지"
+      },
+      "seoApproach": {
+        "keywordDensity": "무관심, 콘텐츠만",
+        "metaDescriptionStyle": "핵심 한 줄 요약",
+        "internalLinkingPattern": "Now page 연결"
+      },
+      "signature": {
+        "openingPatterns": ["", "I used to think...", "Here's a lesson I learned:"],
+        "closingPatterns": ["Think about it.", "", "What do you think?"],
+        "transitionPhrases": ["But...", "So...", "And yet..."],
+        "brandVoiceKeywords": ["simple", "now", "obvious", "hell yes", "no"]
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-15",
+    "totalBloggers": 20,
+    "categories": [
+      "마케팅/비즈니스",
+      "디지털마케팅/SEO",
+      "SEO/링크빌딩",
+      "라이프스타일/생산성",
+      "비즈니스/자기계발",
+      "습관/생산성",
+      "기업가정신/소셜미디어",
+      "자기계발/인생철학",
+      "온라인비즈니스/패시브인컴",
+      "개인재정/커리어",
+      "리더십/취약성",
+      "콘텐츠마케팅/글쓰기",
+      "스토아철학/자기계발",
+      "온라인코스/디지털마케팅",
+      "딥워크/생산성",
+      "블로깅/온라인글쓰기",
+      "리더십/생산성",
+      "행복/습관",
+      "기업가정신/미니멀라이프"
+    ]
+  }
+}

@@ -1,0 +1,1005 @@
+{
+  "internationalBloggers": [
+    {
+      "id": "ib001",
+      "name": "Neil Patel",
+      "platform": "wordpress",
+      "category": "Marketing/SEO",
+      "monthlyVisitors": 8000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 40, "casual": 60 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.35,
+        "hookStyle": "statistic",
+        "ctaStyle": "direct-action",
+        "specialPatterns": [
+          "Data-backed claims",
+          "Step-by-step tutorials",
+          "Infographics integration",
+          "Video embeds",
+          "Case study references"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "statistic-hook",
+          "elements": ["shocking-stat", "problem-statement", "promise"]
+        },
+        "body": {
+          "structure": "numbered-steps",
+          "subheadingStyle": "action-oriented",
+          "transitionStyle": "logical-connector"
+        },
+        "conclusion": {
+          "style": "summary-with-action",
+          "ctaType": "tool-recommendation"
+        }
+      },
+      "samplePhrases": [
+        "Did you know that...",
+        "Here's the thing...",
+        "Let me show you exactly how...",
+        "The data proves that...",
+        "Take action now"
+      ],
+      "avoidPatterns": [
+        "In this article, we will...",
+        "Let's dive in"
+      ]
+    },
+    {
+      "id": "ib002",
+      "name": "Tim Ferriss",
+      "platform": "wordpress",
+      "category": "Productivity/Lifestyle",
+      "monthlyVisitors": 5000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 25, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 35, "casual": 65 },
+        "emojiUsage": "none",
+        "imageRatio": 0.2,
+        "hookStyle": "curiosity-gap",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "Personal experiments",
+          "Expert interviews",
+          "80/20 analysis",
+          "Unconventional approaches"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "story-hook",
+          "elements": ["personal-experiment", "counterintuitive-claim", "promise-of-efficiency"]
+        },
+        "body": {
+          "structure": "framework-based",
+          "subheadingStyle": "question-format",
+          "transitionStyle": "logical"
+        },
+        "conclusion": {
+          "style": "actionable-summary",
+          "ctaType": "experiment-suggestion"
+        }
+      },
+      "samplePhrases": [
+        "I've tested this extensively...",
+        "The 80/20 principle applies here...",
+        "What would happen if...",
+        "The minimum effective dose is...",
+        "Try this for one week"
+      ],
+      "avoidPatterns": [
+        "In this post...",
+        "Today I want to share..."
+      ]
+    },
+    {
+      "id": "ib003",
+      "name": "Seth Godin",
+      "platform": "typepad",
+      "category": "Marketing/Philosophy",
+      "monthlyVisitors": 3000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 12, "variance": "high" },
+        "paragraphLength": { "average": 2, "max": 4 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "none",
+        "imageRatio": 0.05,
+        "hookStyle": "bold-statement",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Ultra-short posts",
+          "Metaphor-heavy",
+          "Thought-provoking",
+          "No images needed"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "provocative-statement",
+          "elements": ["bold-claim", "single-idea-focus"]
+        },
+        "body": {
+          "structure": "essay-flow",
+          "subheadingStyle": "none",
+          "transitionStyle": "poetic"
+        },
+        "conclusion": {
+          "style": "thought-to-ponder",
+          "ctaType": "reflection-prompt"
+        }
+      },
+      "samplePhrases": [
+        "Here's the thing.",
+        "It turns out...",
+        "The question is...",
+        "Perhaps...",
+        "What if?"
+      ],
+      "avoidPatterns": [
+        "In today's post...",
+        "Let me explain..."
+      ]
+    },
+    {
+      "id": "ib004",
+      "name": "Brian Dean",
+      "platform": "wordpress",
+      "category": "SEO",
+      "monthlyVisitors": 2500000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.4,
+        "hookStyle": "problem",
+        "ctaStyle": "direct-action",
+        "specialPatterns": [
+          "Skyscraper technique examples",
+          "Screenshot tutorials",
+          "Case study proof",
+          "Numbered lists"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "problem-solution",
+          "elements": ["common-struggle", "proven-solution", "results-preview"]
+        },
+        "body": {
+          "structure": "step-by-step",
+          "subheadingStyle": "numbered-action",
+          "transitionStyle": "action-based"
+        },
+        "conclusion": {
+          "style": "action-summary",
+          "ctaType": "implementation-prompt"
+        }
+      },
+      "samplePhrases": [
+        "In fact...",
+        "Here's the proof...",
+        "Step #1:",
+        "Pro tip:",
+        "Now it's your turn"
+      ],
+      "avoidPatterns": [
+        "Welcome to this guide...",
+        "In this article, you will learn..."
+      ]
+    },
+    {
+      "id": "ib005",
+      "name": "Marie Forleo",
+      "platform": "wordpress",
+      "category": "Business/Personal Development",
+      "monthlyVisitors": 1800000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 25, "casual": 75 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.3,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "Personal storytelling",
+          "Empowering tone",
+          "Video integration",
+          "Community engagement"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "relatable-story",
+          "elements": ["personal-struggle", "breakthrough-moment", "lesson-preview"]
+        },
+        "body": {
+          "structure": "narrative-advice",
+          "subheadingStyle": "conversational",
+          "transitionStyle": "encouraging"
+        },
+        "conclusion": {
+          "style": "empowering-close",
+          "ctaType": "community-question"
+        }
+      },
+      "samplePhrases": [
+        "Here's what I know for sure...",
+        "Everything is figureoutable",
+        "Let me ask you this...",
+        "You've got this!",
+        "Share with me in the comments"
+      ],
+      "avoidPatterns": [
+        "Today's topic is...",
+        "I'm going to teach you..."
+      ]
+    },
+    {
+      "id": "ib006",
+      "name": "Mark Manson",
+      "platform": "wordpress",
+      "category": "Self-Help/Philosophy",
+      "monthlyVisitors": 4000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 7 },
+        "toneProfile": { "formal": 20, "casual": 80 },
+        "emojiUsage": "none",
+        "imageRatio": 0.1,
+        "hookStyle": "controversy",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Profanity usage",
+          "Counterintuitive advice",
+          "Dark humor",
+          "Philosophical depth"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "provocative-hook",
+          "elements": ["uncomfortable-truth", "conventional-wisdom-challenge", "reality-check"]
+        },
+        "body": {
+          "structure": "philosophical-argument",
+          "subheadingStyle": "statement-based",
+          "transitionStyle": "conversational"
+        },
+        "conclusion": {
+          "style": "existential-reflection",
+          "ctaType": "self-examination"
+        }
+      },
+      "samplePhrases": [
+        "Here's the uncomfortable truth...",
+        "Stop giving a f*ck about...",
+        "The problem is...",
+        "What matters is...",
+        "Think about that for a second"
+      ],
+      "avoidPatterns": [
+        "In this article...",
+        "I'm excited to share..."
+      ]
+    },
+    {
+      "id": "ib007",
+      "name": "Pat Flynn",
+      "platform": "wordpress",
+      "category": "Entrepreneurship",
+      "monthlyVisitors": 2200000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.3,
+        "hookStyle": "story",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "Income reports",
+          "Case studies",
+          "Transparent sharing",
+          "Podcast integration"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "transparency-hook",
+          "elements": ["honest-share", "lesson-learned", "value-promise"]
+        },
+        "body": {
+          "structure": "experience-based",
+          "subheadingStyle": "lesson-based",
+          "transitionStyle": "storytelling"
+        },
+        "conclusion": {
+          "style": "actionable-takeaway",
+          "ctaType": "resource-sharing"
+        }
+      },
+      "samplePhrases": [
+        "Let me be completely transparent...",
+        "Here's exactly what happened...",
+        "I made this mistake so you don't have to...",
+        "Serve first, then earn",
+        "Take what works for you"
+      ],
+      "avoidPatterns": [
+        "Welcome to my blog...",
+        "In this post, I will..."
+      ]
+    },
+    {
+      "id": "ib008",
+      "name": "Joanna Wiebe",
+      "platform": "wordpress",
+      "category": "Copywriting",
+      "monthlyVisitors": 900000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 16, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 35, "casual": 65 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.35,
+        "hookStyle": "problem",
+        "ctaStyle": "direct-action",
+        "specialPatterns": [
+          "Before/after copy examples",
+          "Psychology-based tips",
+          "A/B test results",
+          "Swipe files"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "copy-hook",
+          "elements": ["copywriting-problem", "quick-fix-promise", "example-preview"]
+        },
+        "body": {
+          "structure": "example-based",
+          "subheadingStyle": "technique-based",
+          "transitionStyle": "punchy"
+        },
+        "conclusion": {
+          "style": "technique-summary",
+          "ctaType": "swipe-file-offer"
+        }
+      },
+      "samplePhrases": [
+        "Here's the formula...",
+        "Notice how this works...",
+        "Steal this template...",
+        "The psychology behind this...",
+        "Try this on your next landing page"
+      ],
+      "avoidPatterns": [
+        "Today's copywriting tip is...",
+        "In this tutorial..."
+      ]
+    },
+    {
+      "id": "ib009",
+      "name": "Ramit Sethi",
+      "platform": "wordpress",
+      "category": "Personal Finance",
+      "monthlyVisitors": 3500000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 25, "casual": 75 },
+        "emojiUsage": "none",
+        "imageRatio": 0.25,
+        "hookStyle": "bold-statement",
+        "ctaStyle": "direct-action",
+        "specialPatterns": [
+          "Word-for-word scripts",
+          "Psychology-based",
+          "Contrarian views",
+          "Automation focus"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "contrarian-hook",
+          "elements": ["common-myth", "reality-check", "better-way-promise"]
+        },
+        "body": {
+          "structure": "script-based",
+          "subheadingStyle": "action-based",
+          "transitionStyle": "direct"
+        },
+        "conclusion": {
+          "style": "no-excuse-close",
+          "ctaType": "immediate-action"
+        }
+      },
+      "samplePhrases": [
+        "Forget everything you've heard about...",
+        "Here's the exact script...",
+        "Stop worrying about...",
+        "The Big Wins are...",
+        "Automate this today"
+      ],
+      "avoidPatterns": [
+        "In this post...",
+        "I'm going to explain..."
+      ]
+    },
+    {
+      "id": "ib010",
+      "name": "James Clear",
+      "platform": "wordpress",
+      "category": "Habits/Productivity",
+      "monthlyVisitors": 6000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "low" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "none",
+        "imageRatio": 0.2,
+        "hookStyle": "story",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Historical anecdotes",
+          "Scientific research",
+          "Clear frameworks",
+          "Visual models"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "historical-hook",
+          "elements": ["interesting-story", "universal-principle", "application-preview"]
+        },
+        "body": {
+          "structure": "principle-based",
+          "subheadingStyle": "concept-based",
+          "transitionStyle": "logical"
+        },
+        "conclusion": {
+          "style": "principle-summary",
+          "ctaType": "small-step-suggestion"
+        }
+      },
+      "samplePhrases": [
+        "In 1961, a researcher discovered...",
+        "The key insight is this...",
+        "Here's how this applies to you...",
+        "Small habits, remarkable results",
+        "Start with just 2 minutes"
+      ],
+      "avoidPatterns": [
+        "Today we're going to talk about...",
+        "In this article, I'll explain..."
+      ]
+    },
+    {
+      "id": "ib011",
+      "name": "Ryan Holiday",
+      "platform": "wordpress",
+      "category": "Philosophy/Marketing",
+      "monthlyVisitors": 2000000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 55, "casual": 45 },
+        "emojiUsage": "none",
+        "imageRatio": 0.15,
+        "hookStyle": "quote",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Stoic philosophy",
+          "Historical examples",
+          "Book references",
+          "Daily meditations"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "philosophical-hook",
+          "elements": ["stoic-quote", "historical-context", "modern-application"]
+        },
+        "body": {
+          "structure": "philosophical-essay",
+          "subheadingStyle": "theme-based",
+          "transitionStyle": "reflective"
+        },
+        "conclusion": {
+          "style": "wisdom-summary",
+          "ctaType": "reflection-prompt"
+        }
+      },
+      "samplePhrases": [
+        "As Marcus Aurelius wrote...",
+        "The obstacle is the way",
+        "Consider this...",
+        "What matters is...",
+        "Practice this daily"
+      ],
+      "avoidPatterns": [
+        "In this post...",
+        "Today I want to discuss..."
+      ]
+    },
+    {
+      "id": "ib012",
+      "name": "Darren Rowse",
+      "platform": "wordpress",
+      "category": "Blogging/Photography",
+      "monthlyVisitors": 1500000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 35, "casual": 65 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.3,
+        "hookStyle": "question",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "Practical tutorials",
+          "Community building",
+          "Podcast integration",
+          "Reader challenges"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "question-hook",
+          "elements": ["reader-question", "common-challenge", "solution-preview"]
+        },
+        "body": {
+          "structure": "tutorial-based",
+          "subheadingStyle": "step-based",
+          "transitionStyle": "encouraging"
+        },
+        "conclusion": {
+          "style": "community-close",
+          "ctaType": "reader-challenge"
+        }
+      },
+      "samplePhrases": [
+        "Have you ever wondered...?",
+        "Here's what works for me...",
+        "I'd love to hear from you...",
+        "Give this a try...",
+        "Share your experience below"
+      ],
+      "avoidPatterns": [
+        "Welcome to my blog...",
+        "In today's lesson..."
+      ]
+    },
+    {
+      "id": "ib013",
+      "name": "Leo Babauta",
+      "platform": "wordpress",
+      "category": "Minimalism/Zen",
+      "monthlyVisitors": 1200000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 14, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "none",
+        "imageRatio": 0.05,
+        "hookStyle": "curiosity-gap",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Minimalist style",
+          "Zen philosophy",
+          "Simple practices",
+          "Uncopyright content"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "zen-hook",
+          "elements": ["simple-observation", "deeper-meaning", "practice-preview"]
+        },
+        "body": {
+          "structure": "contemplative",
+          "subheadingStyle": "minimal",
+          "transitionStyle": "gentle"
+        },
+        "conclusion": {
+          "style": "peaceful-close",
+          "ctaType": "simple-practice"
+        }
+      },
+      "samplePhrases": [
+        "Let's pause for a moment...",
+        "The simple truth is...",
+        "Notice what happens when...",
+        "Less, but better",
+        "Try this simple practice"
+      ],
+      "avoidPatterns": [
+        "In this article...",
+        "Today I'll teach you..."
+      ]
+    },
+    {
+      "id": "ib014",
+      "name": "Jeff Bullas",
+      "platform": "wordpress",
+      "category": "Digital Marketing",
+      "monthlyVisitors": 1800000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.35,
+        "hookStyle": "statistic",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "Industry statistics",
+          "Tool reviews",
+          "Expert roundups",
+          "Trend analysis"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "trend-hook",
+          "elements": ["industry-shift", "data-point", "opportunity-highlight"]
+        },
+        "body": {
+          "structure": "listicle-based",
+          "subheadingStyle": "numbered",
+          "transitionStyle": "informational"
+        },
+        "conclusion": {
+          "style": "action-summary",
+          "ctaType": "tool-recommendation"
+        }
+      },
+      "samplePhrases": [
+        "The latest data shows...",
+        "Here are the top tools...",
+        "Industry leaders are...",
+        "The trend is clear...",
+        "Start implementing today"
+      ],
+      "avoidPatterns": [
+        "In this post...",
+        "Today we'll look at..."
+      ]
+    },
+    {
+      "id": "ib015",
+      "name": "Ann Handley",
+      "platform": "wordpress",
+      "category": "Content Marketing",
+      "monthlyVisitors": 950000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "high" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "moderate",
+        "imageRatio": 0.25,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "Newsletter style",
+          "Personal anecdotes",
+          "Writing tips",
+          "Brand voice examples"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "letter-hook",
+          "elements": ["personal-observation", "relatable-moment", "writing-lesson"]
+        },
+        "body": {
+          "structure": "conversational",
+          "subheadingStyle": "playful",
+          "transitionStyle": "friendly"
+        },
+        "conclusion": {
+          "style": "warm-close",
+          "ctaType": "reply-invitation"
+        }
+      },
+      "samplePhrases": [
+        "Here's the thing about writing...",
+        "Can I tell you a secret?",
+        "Everybody writes. You can too.",
+        "Notice how this feels...",
+        "Hit reply and tell me"
+      ],
+      "avoidPatterns": [
+        "In this article...",
+        "Today's content tip is..."
+      ]
+    },
+    {
+      "id": "ib016",
+      "name": "Heather Armstrong",
+      "platform": "wordpress",
+      "category": "Personal/Parenting",
+      "monthlyVisitors": 1100000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 22, "variance": "high" },
+        "paragraphLength": { "average": 4, "max": 7 },
+        "toneProfile": { "formal": 15, "casual": 85 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.35,
+        "hookStyle": "story",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "Raw honesty",
+          "Dark humor",
+          "Personal struggles",
+          "Family stories"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "confessional-hook",
+          "elements": ["honest-admission", "relatable-chaos", "humor-setup"]
+        },
+        "body": {
+          "structure": "narrative",
+          "subheadingStyle": "none",
+          "transitionStyle": "stream-of-consciousness"
+        },
+        "conclusion": {
+          "style": "reflective-close",
+          "ctaType": "solidarity-statement"
+        }
+      },
+      "samplePhrases": [
+        "Let me tell you what happened...",
+        "I'm not going to pretend...",
+        "Here's the honest truth...",
+        "We're all doing our best",
+        "You're not alone in this"
+      ],
+      "avoidPatterns": [
+        "Today's parenting tip...",
+        "In this post..."
+      ]
+    },
+    {
+      "id": "ib017",
+      "name": "Rand Fishkin",
+      "platform": "wordpress",
+      "category": "SEO/Startup",
+      "monthlyVisitors": 800000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 24, "variance": "medium" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 40, "casual": 60 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.35,
+        "hookStyle": "problem",
+        "ctaStyle": "resource-link",
+        "specialPatterns": [
+          "Whiteboard videos",
+          "Industry analysis",
+          "Transparency about failures",
+          "Data visualization"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "industry-hook",
+          "elements": ["industry-problem", "common-misconception", "better-approach"]
+        },
+        "body": {
+          "structure": "analysis-based",
+          "subheadingStyle": "topic-based",
+          "transitionStyle": "logical"
+        },
+        "conclusion": {
+          "style": "honest-summary",
+          "ctaType": "discussion-invitation"
+        }
+      },
+      "samplePhrases": [
+        "Here's what the data shows...",
+        "The industry gets this wrong...",
+        "Let me be transparent about...",
+        "The real problem is...",
+        "What do you think?"
+      ],
+      "avoidPatterns": [
+        "In this post...",
+        "Today's SEO tip..."
+      ]
+    },
+    {
+      "id": "ib018",
+      "name": "Gary Vaynerchuk",
+      "platform": "wordpress",
+      "category": "Entrepreneurship/Social",
+      "monthlyVisitors": 4500000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 15, "variance": "high" },
+        "paragraphLength": { "average": 2, "max": 4 },
+        "toneProfile": { "formal": 10, "casual": 90 },
+        "emojiUsage": "heavy",
+        "imageRatio": 0.4,
+        "hookStyle": "bold-statement",
+        "ctaStyle": "direct-action",
+        "specialPatterns": [
+          "High energy",
+          "Video content",
+          "Hustle culture",
+          "Platform-native content"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "punch-hook",
+          "elements": ["wake-up-call", "direct-challenge", "no-excuses"]
+        },
+        "body": {
+          "structure": "rant-style",
+          "subheadingStyle": "none",
+          "transitionStyle": "energetic"
+        },
+        "conclusion": {
+          "style": "call-to-hustle",
+          "ctaType": "immediate-action"
+        }
+      },
+      "samplePhrases": [
+        "Listen up.",
+        "Stop making excuses.",
+        "Document, don't create.",
+        "The market doesn't care.",
+        "Get to work."
+      ],
+      "avoidPatterns": [
+        "In this article...",
+        "Let me explain..."
+      ]
+    },
+    {
+      "id": "ib019",
+      "name": "Chris Brogan",
+      "platform": "wordpress",
+      "category": "Business/Marketing",
+      "monthlyVisitors": 700000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 18, "variance": "medium" },
+        "paragraphLength": { "average": 3, "max": 5 },
+        "toneProfile": { "formal": 30, "casual": 70 },
+        "emojiUsage": "minimal",
+        "imageRatio": 0.2,
+        "hookStyle": "question",
+        "ctaStyle": "engagement-question",
+        "specialPatterns": [
+          "Newsletter format",
+          "Personal connection",
+          "Business philosophy",
+          "Community focus"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "short",
+          "style": "friend-hook",
+          "elements": ["friendly-greeting", "shared-experience", "topic-bridge"]
+        },
+        "body": {
+          "structure": "conversational",
+          "subheadingStyle": "minimal",
+          "transitionStyle": "personal"
+        },
+        "conclusion": {
+          "style": "community-close",
+          "ctaType": "reply-request"
+        }
+      },
+      "samplePhrases": [
+        "Hey there.",
+        "Here's what I've been thinking...",
+        "What works for me is...",
+        "We're in this together.",
+        "Reply and let me know"
+      ],
+      "avoidPatterns": [
+        "In today's post...",
+        "Let me teach you..."
+      ]
+    },
+    {
+      "id": "ib020",
+      "name": "Gretchen Rubin",
+      "platform": "wordpress",
+      "category": "Happiness/Habits",
+      "monthlyVisitors": 2100000,
+      "language": "en",
+      "characteristics": {
+        "sentenceLength": { "average": 20, "variance": "low" },
+        "paragraphLength": { "average": 4, "max": 6 },
+        "toneProfile": { "formal": 45, "casual": 55 },
+        "emojiUsage": "none",
+        "imageRatio": 0.2,
+        "hookStyle": "curiosity-gap",
+        "ctaStyle": "soft-recommendation",
+        "specialPatterns": [
+          "Personal experiments",
+          "Research-backed",
+          "Framework creation",
+          "Quiz integration"
+        ]
+      },
+      "writingPatterns": {
+        "introduction": {
+          "length": "medium",
+          "style": "observation-hook",
+          "elements": ["personal-observation", "universal-truth", "framework-preview"]
+        },
+        "body": {
+          "structure": "framework-based",
+          "subheadingStyle": "concept-based",
+          "transitionStyle": "thoughtful"
+        },
+        "conclusion": {
+          "style": "application-close",
+          "ctaType": "self-reflection"
+        }
+      },
+      "samplePhrases": [
+        "I've noticed something interesting...",
+        "There are four types...",
+        "Know yourself better...",
+        "The key to happiness is...",
+        "Try this experiment"
+      ],
+      "avoidPatterns": [
+        "In this article...",
+        "Today's happiness tip..."
+      ]
+    }
+  ]
+}
