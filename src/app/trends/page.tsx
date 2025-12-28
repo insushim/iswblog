@@ -50,7 +50,7 @@ export default function TrendsPage() {
       const response = await fetch('/api/trends');
       const data = await response.json();
 
-      if (data.success) {
+      if (data.trends) {
         setTrendData(data.trends || []);
         setSuggestions(data.suggestions || []);
       }
