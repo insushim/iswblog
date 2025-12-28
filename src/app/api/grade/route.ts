@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { crossValidationPrompt } from '@/lib/prompts/writing-prompts';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Content Grading API Route
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock grade for development
@@ -26,33 +27,9 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: crossValidationPrompt },
-          {
-            role: 'user',
-            content: `다음 블로그 글을 평가해주세요:\n\n제목: ${title || '제목 없음'}\n주제: ${topic || '주제 없음'}\n\n내용:\n${content}`,
-          },
-        ],
-        temperature: 0.5,
-        max_tokens: 1500,
-      }),
-    });
+    const userPrompt = `다음 블로그 글을 평가해주세요:\n\n제목: ${title || '제목 없음'}\n주제: ${topic || '주제 없음'}\n\n내용:\n${content}`;
 
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    const gradeContent = data.choices[0]?.message?.content;
-
+    const gradeContent = await callGemini(userPrompt, crossValidationPrompt);
     const grade = parseGradeResponse(gradeContent, content);
 
     return NextResponse.json({ grade });

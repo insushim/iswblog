@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { seoOptimizationPrompt } from '@/lib/prompts/writing-prompts';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // SEO Optimization API Route
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock SEO analysis and optimized content
@@ -28,38 +29,14 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: seoOptimizationPrompt },
-          {
-            role: 'user',
-            content: JSON.stringify({
-              content,
-              title,
-              keywords,
-              platform,
-            }),
-          },
-        ],
-        temperature: 0.6,
-        max_tokens: 4000,
-      }),
+    const userPrompt = JSON.stringify({
+      content,
+      title,
+      keywords,
+      platform,
     });
 
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    const responseContent = data.choices[0]?.message?.content;
-
+    const responseContent = await callGemini(userPrompt, seoOptimizationPrompt);
     const result = parseSeOResponse(responseContent, content, title, keywords || []);
 
     return NextResponse.json(result);

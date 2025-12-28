@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { outlinePrompt } from '@/lib/prompts/writing-prompts';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Outline API Route
@@ -17,51 +18,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock outline for development
       return NextResponse.json(generateMockOutline(topic, title, length));
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: outlinePrompt,
-          },
-          {
-            role: 'user',
-            content: JSON.stringify({
-              topic,
-              title,
-              tone,
-              length,
-              keywords,
-              platform,
-              bloggerStyles,
-            }),
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 2000,
-      }),
+    const userPrompt = JSON.stringify({
+      topic,
+      title,
+      tone,
+      length,
+      keywords,
+      platform,
+      bloggerStyles,
     });
 
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    const content = data.choices[0]?.message?.content;
-
+    const content = await callGemini(userPrompt, outlinePrompt);
     const outline = parseOutlineResponse(content, topic, title);
 
     return NextResponse.json(outline);

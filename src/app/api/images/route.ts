@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { imagePromptGenerator } from '@/lib/prompts/writing-prompts';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Image Generation API Route
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
     const imageCount = Math.min(count || 3, 10);
     const imageStyle = style || 'photorealistic';
 
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock images for development
@@ -29,85 +30,37 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Generate image prompts using GPT
-    const promptResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: imagePromptGenerator },
-          {
-            role: 'user',
-            content: JSON.stringify({
-              topic,
-              title,
-              sections,
-              style: imageStyle,
-              count: imageCount,
-            }),
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 1000,
-      }),
+    // Generate image prompts using Gemini
+    const userPrompt = JSON.stringify({
+      topic,
+      title,
+      sections,
+      style: imageStyle,
+      count: imageCount,
     });
 
-    if (!promptResponse.ok) {
-      throw new Error('프롬프트 생성 실패');
-    }
+    const promptContent = await callGemini(userPrompt, imagePromptGenerator);
+    const prompts = parseImagePrompts(promptContent, imageCount);
 
-    const promptData = await promptResponse.json();
-    const prompts = parseImagePrompts(promptData.choices[0]?.message?.content, imageCount);
-
-    // Generate images using DALL-E
-    const images = await Promise.all(
-      prompts.map(async (prompt, index) => {
-        try {
-          const imageResponse = await fetch('https://api.openai.com/v1/images/generations', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${apiKey}`,
-            },
-            body: JSON.stringify({
-              model: 'dall-e-3',
-              prompt: prompt.prompt,
-              n: 1,
-              size: '1024x1024',
-              quality: 'standard',
-            }),
-          });
-
-          if (!imageResponse.ok) {
-            throw new Error('이미지 생성 실패');
-          }
-
-          const imageData = await imageResponse.json();
-
-          return {
-            id: `img-${Date.now()}-${index}`,
-            url: imageData.data[0]?.url || '',
-            altText: prompt.alt || `${topic} 이미지 ${index + 1}`,
-            prompt: prompt.prompt,
-            style: imageStyle,
-            width: 1024,
-            height: 1024,
-            caption: prompt.position || undefined,
-            createdAt: new Date(),
-          };
-        } catch (error) {
-          console.error('Image generation error:', error);
-          return null;
-        }
-      })
-    );
+    // Return prompts with placeholder images (actual image generation would require a separate image API)
+    const images = prompts.map((prompt, index) => {
+      const color = ['667eea', '764ba2', 'f093fb', 'f5576c', 'fda085', '4facfe'][index % 6];
+      return {
+        id: `img-${Date.now()}-${index}`,
+        url: `https://placehold.co/1024x1024/${color}/ffffff?text=${encodeURIComponent(prompt.alt.slice(0, 20))}`,
+        altText: prompt.alt || `${topic} 이미지 ${index + 1}`,
+        prompt: prompt.prompt,
+        style: imageStyle,
+        width: 1024,
+        height: 1024,
+        caption: prompt.position || undefined,
+        createdAt: new Date(),
+      };
+    });
 
     return NextResponse.json({
-      images: images.filter(Boolean),
+      images,
+      prompts, // Return prompts for manual image generation if needed
     });
   } catch (error) {
     console.error('Images API error:', error);

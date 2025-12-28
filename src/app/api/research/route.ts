@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { researchPrompt } from '@/lib/prompts/writing-prompts';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Research API Route
@@ -17,47 +18,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock data for development
       return NextResponse.json({
-        results: generateMockResearchResults(topic),
-        keywords: generateMockKeywords(topic),
-        sources: [],
+        topicAnalysis: generateMockTopicAnalysis(topic),
+        keywordResearch: generateMockKeywordResearch(topic),
+        audienceInsights: generateMockAudienceInsights(),
+        contentAngle: generateMockContentAngle(topic),
       });
     }
 
-    // Use OpenAI for research
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: researchPrompt,
-          },
-          {
-            role: 'user',
-            content: `주제: ${topic}\n키워드: ${keywords?.join(', ') || ''}\n플랫폼: ${platform || 'general'}`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 2000,
-      }),
-    });
+    const userPrompt = `주제: ${topic}\n키워드: ${keywords?.join(', ') || ''}\n플랫폼: ${platform || 'general'}`;
 
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    const content = data.choices[0]?.message?.content;
+    const content = await callGemini(userPrompt, researchPrompt);
 
     // Parse the response
     const researchData = parseResearchResponse(content, topic);
@@ -81,22 +56,34 @@ function parseResearchResponse(content: string, topic: string) {
     }
     return JSON.parse(content);
   } catch {
-    // Return structured mock data based on the response
+    // Return structured data based on the response
     return {
-      results: [
-        {
-          type: 'article',
-          title: `${topic}에 대한 최신 동향`,
-          summary: content.slice(0, 200),
-          content: content,
-          keyPoints: extractKeyPoints(content),
-          quotes: [],
-          source: '',
-          relevanceScore: 0.85,
+      topicAnalysis: {
+        mainTopic: topic,
+        subTopics: extractKeyPoints(content).slice(0, 3),
+        searchIntent: 'informational',
+        competitorAnalysis: {
+          averageWordCount: 2000,
+          commonStructure: ['서론', '본론', '결론'],
+          missingAngles: ['실제 사례', '전문가 인터뷰'],
         },
-      ],
-      keywords: extractKeywords(content),
-      sources: [],
+      },
+      keywordResearch: {
+        primaryKeyword: topic,
+        secondaryKeywords: extractKeywords(content).slice(0, 5),
+        longTailKeywords: [`${topic} 방법`, `${topic} 추천`, `${topic} 비교`],
+        questionKeywords: [`${topic}이란?`, `${topic} 어떻게?`],
+      },
+      audienceInsights: {
+        demographics: ['20-40대', '직장인', '관심있는 일반인'],
+        painPoints: ['정보 부족', '시간 부족', '비용 문제'],
+        desiredOutcomes: ['문제 해결', '지식 습득', '실용적 팁'],
+      },
+      contentAngle: {
+        uniqueValue: content.slice(0, 100),
+        differentiator: '실제 경험 기반 정보 제공',
+        hook: `${topic}에 대해 알아야 할 모든 것`,
+      },
     };
   }
 }
@@ -115,7 +102,6 @@ function extractKeyPoints(content: string): string[] {
 }
 
 function extractKeywords(content: string): string[] {
-  // Simple keyword extraction
   const words = content.toLowerCase().match(/[가-힣a-z]{2,}/g) || [];
   const frequency: Record<string, number> = {};
 
@@ -129,47 +115,40 @@ function extractKeywords(content: string): string[] {
     .map(([word]) => word);
 }
 
-function generateMockResearchResults(topic: string) {
-  return [
-    {
-      type: 'article',
-      title: `${topic}의 현재 트렌드와 미래 전망`,
-      summary: `${topic}에 대한 종합적인 분석과 최신 동향을 정리했습니다.`,
-      content: `${topic}은 현재 많은 관심을 받고 있는 주제입니다. 최근 연구에 따르면 이 분야는 지속적으로 성장하고 있으며, 다양한 측면에서 주목받고 있습니다.`,
-      keyPoints: [
-        `${topic}의 핵심 개념 이해`,
-        '최신 동향 및 트렌드 분석',
-        '실용적인 활용 방법',
-        '전문가 의견 및 전망',
-      ],
-      quotes: [
-        `"${topic}은 앞으로 더욱 중요해질 것입니다."`,
-      ],
-      source: '',
-      relevanceScore: 0.9,
+function generateMockTopicAnalysis(topic: string) {
+  return {
+    mainTopic: topic,
+    subTopics: [`${topic} 기초`, `${topic} 활용`, `${topic} 트렌드`],
+    searchIntent: 'informational',
+    competitorAnalysis: {
+      averageWordCount: 2500,
+      commonStructure: ['개요', '상세 설명', '실용 팁', '결론'],
+      missingAngles: ['최신 동향', '실제 사례'],
     },
-    {
-      type: 'statistics',
-      title: `${topic} 관련 주요 통계`,
-      summary: '관련 분야의 최신 통계 데이터입니다.',
-      content: '시장 조사에 따르면 해당 분야는 연평균 15% 성장하고 있습니다.',
-      keyPoints: ['성장률 15%', '시장 규모 확대', '사용자 증가'],
-      quotes: [],
-      source: '',
-      relevanceScore: 0.85,
-    },
-  ];
+  };
 }
 
-function generateMockKeywords(topic: string): string[] {
-  return [
-    topic,
-    `${topic} 방법`,
-    `${topic} 추천`,
-    `${topic} 비교`,
-    `${topic} 후기`,
-    `${topic} 2024`,
-    `${topic} 초보`,
-    `${topic} 팁`,
-  ];
+function generateMockKeywordResearch(topic: string) {
+  return {
+    primaryKeyword: topic,
+    secondaryKeywords: [`${topic} 방법`, `${topic} 추천`, `${topic} 비교`],
+    longTailKeywords: [`${topic} 초보자 가이드`, `${topic} 2024 트렌드`],
+    questionKeywords: [`${topic}이란 무엇인가?`, `${topic} 어떻게 시작하나요?`],
+  };
+}
+
+function generateMockAudienceInsights() {
+  return {
+    demographics: ['20-40대', '직장인', '학생'],
+    painPoints: ['정보 부족', '어디서 시작할지 모름'],
+    desiredOutcomes: ['실용적 정보 획득', '문제 해결'],
+  };
+}
+
+function generateMockContentAngle(topic: string) {
+  return {
+    uniqueValue: `${topic}에 대한 종합 가이드`,
+    differentiator: '실제 경험 기반 정보',
+    hook: `${topic}, 이것만 알면 됩니다`,
+  };
 }

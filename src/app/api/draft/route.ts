@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { masterWritingPrompt } from '@/lib/prompts/writing-prompts';
 import { getBloggerById, mergeBloggerStyles } from '@/lib/bloggers';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Draft Generation API Route
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock draft for development
@@ -43,7 +44,7 @@ export async function POST(request: NextRequest) {
 
     // Get blogger style information
     const bloggerProfiles = bloggerStyles?.map((id: string) => getBloggerById(id)).filter(Boolean) || [];
-    const mergedStyle = bloggerProfiles.length > 0 ? mergeBloggerStyles(bloggerProfiles) : null;
+    const mergedStyle = bloggerProfiles.length > 0 ? mergeBloggerStyles(bloggerStyles) : null;
 
     // Build the prompt
     const systemPrompt = masterWritingPrompt
@@ -65,29 +66,7 @@ ${researchData ? `리서치 자료:\n${JSON.stringify(researchData, null, 2)}` :
 HTML 형식으로 작성하되, <article> 태그 내부 내용만 반환해주세요.
 `;
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        temperature: 0.8,
-        max_tokens: 4000,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    let content = data.choices[0]?.message?.content || '';
+    let content = await callGemini(userPrompt, systemPrompt);
 
     // Clean up the content
     content = content.replace(/```html\n?/g, '').replace(/```\n?/g, '');

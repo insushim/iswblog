@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { humanizePrompt } from '@/lib/prompts/writing-prompts';
 import { getBloggerById, mergeBloggerStyles } from '@/lib/bloggers';
+import { callGemini } from '@/lib/gemini';
 
 // ============================================================
 // Humanize API Route
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.OPENAI_API_KEY || process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     if (!apiKey) {
       // Return mock humanized content
@@ -36,39 +37,16 @@ export async function POST(request: NextRequest) {
 
     // Get blogger style information
     const bloggerProfiles = bloggerStyles?.map((id: string) => getBloggerById(id)).filter(Boolean) || [];
-    const mergedStyle = bloggerProfiles.length > 0 ? mergeBloggerStyles(bloggerProfiles) : null;
+    const mergedStyle = bloggerProfiles.length > 0 ? mergeBloggerStyles(bloggerStyles) : null;
 
-    const prompt = humanizePrompt
+    const systemPrompt = humanizePrompt
       .replace('{LEVEL}', level || 'moderate')
       .replace('{BLOGGER_STYLE}', mergedStyle ? JSON.stringify(mergedStyle) : '없음')
       .replace('{TONE}', tone || 'friendly');
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages: [
-          { role: 'system', content: prompt },
-          {
-            role: 'user',
-            content: `다음 콘텐츠를 자연스럽게 휴머나이즈해주세요:\n\n${content}`,
-          },
-        ],
-        temperature: 0.9,
-        max_tokens: 4000,
-      }),
-    });
+    const userPrompt = `다음 콘텐츠를 자연스럽게 휴머나이즈해주세요:\n\n${content}`;
 
-    if (!response.ok) {
-      throw new Error('API 요청 실패');
-    }
-
-    const data = await response.json();
-    let humanizedContent = data.choices[0]?.message?.content || '';
+    let humanizedContent = await callGemini(userPrompt, systemPrompt);
 
     // Clean up
     humanizedContent = humanizedContent.replace(/```html\n?/g, '').replace(/```\n?/g, '');
