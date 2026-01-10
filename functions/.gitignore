@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Firebase
+.firebase/
+
+# Local environment
+.env
+.env.local
+
+# Logs
+*.log

@@ -48,6 +48,19 @@ interface BlogStore {
     lastUpdated: Date | null;
   };
 
+  // === 웹 검색 참고자료 ===
+  webSearch: {
+    isSearching: boolean;
+    results: {
+      summary: string;
+      keyPoints: string[];
+      statistics: string[];
+      sources: Array<{ title: string; snippet: string; source?: string }>;
+      relatedTopics: string[];
+    } | null;
+    lastSearched: Date | null;
+  };
+
   // === 리서치 결과 ===
   research: ResearchResult | null;
 
@@ -114,6 +127,11 @@ interface BlogStore {
     fetchTrends: (category?: string) => Promise<void>;
     applyTrendSuggestion: (suggestion: TopicSuggestion) => void;
     setTrendLoading: (loading: boolean) => void;
+
+    // 웹 검색
+    fetchWebSearch: () => Promise<void>;
+    clearWebSearch: () => void;
+    applyWebSearchToReference: () => void;
 
     // 워크플로우
     startGeneration: () => Promise<void>;
@@ -242,6 +260,11 @@ export const useBlogStore = create<BlogStore>()(
           currentTrends: [],
           isLoading: false,
           lastUpdated: null,
+        },
+        webSearch: {
+          isSearching: false,
+          results: null,
+          lastSearched: null,
         },
         research: null,
         outline: null,
@@ -397,6 +420,132 @@ export const useBlogStore = create<BlogStore>()(
               }),
               false,
               'setTrendLoading'
+            );
+          },
+
+          // 웹 검색 관련
+          fetchWebSearch: async () => {
+            const { input } = get();
+
+            if (!input.topic) {
+              return;
+            }
+
+            set(
+              (state) => ({
+                webSearch: { ...state.webSearch, isSearching: true },
+              }),
+              false,
+              'fetchWebSearch/start'
+            );
+
+            try {
+              const response = await fetch('/api/web-search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  topic: input.topic,
+                  keywords: input.keywords,
+                  targetAudience: input.targetAudience,
+                }),
+              });
+
+              const data = await response.json();
+
+              if (data.success && data.data) {
+                set(
+                  (state) => ({
+                    webSearch: {
+                      isSearching: false,
+                      results: data.data,
+                      lastSearched: new Date(),
+                    },
+                  }),
+                  false,
+                  'fetchWebSearch/success'
+                );
+              } else {
+                set(
+                  (state) => ({
+                    webSearch: { ...state.webSearch, isSearching: false },
+                  }),
+                  false,
+                  'fetchWebSearch/no-data'
+                );
+              }
+            } catch (error) {
+              console.error('Failed to fetch web search:', error);
+              set(
+                (state) => ({
+                  webSearch: { ...state.webSearch, isSearching: false },
+                }),
+                false,
+                'fetchWebSearch/error'
+              );
+            }
+          },
+
+          clearWebSearch: () => {
+            set(
+              {
+                webSearch: {
+                  isSearching: false,
+                  results: null,
+                  lastSearched: null,
+                },
+              },
+              false,
+              'clearWebSearch'
+            );
+          },
+
+          applyWebSearchToReference: () => {
+            const { webSearch, input } = get();
+
+            if (!webSearch.results) return;
+
+            const { summary, keyPoints, statistics, sources } = webSearch.results;
+
+            // 참고자료 텍스트 생성
+            let referenceText = `## 주제 요약\n${summary}\n\n`;
+
+            if (keyPoints.length > 0) {
+              referenceText += `## 핵심 포인트\n`;
+              keyPoints.forEach((point, i) => {
+                referenceText += `${i + 1}. ${point}\n`;
+              });
+              referenceText += '\n';
+            }
+
+            if (statistics.length > 0) {
+              referenceText += `## 관련 통계\n`;
+              statistics.forEach((stat) => {
+                referenceText += `• ${stat}\n`;
+              });
+              referenceText += '\n';
+            }
+
+            if (sources.length > 0) {
+              referenceText += `## 참고 자료\n`;
+              sources.forEach((source) => {
+                referenceText += `• ${source.title}: ${source.snippet}`;
+                if (source.source) referenceText += ` (${source.source})`;
+                referenceText += '\n';
+              });
+            }
+
+            // 기존 참고자료에 추가
+            const newReferenceText = input.referenceText
+              ? `${input.referenceText}\n\n---\n\n${referenceText}`
+              : referenceText;
+
+            set(
+              (state) => ({
+                input: { ...state.input, referenceText: newReferenceText },
+                project: { ...state.project, isDirty: true },
+              }),
+              false,
+              'applyWebSearchToReference'
             );
           },
 
@@ -1465,6 +1614,11 @@ export const useBlogStore = create<BlogStore>()(
                   isLoading: false,
                   lastUpdated: null,
                 },
+                webSearch: {
+                  isSearching: false,
+                  results: null,
+                  lastSearched: null,
+                },
                 research: null,
                 outline: null,
                 content: {
@@ -1537,6 +1691,7 @@ export const useBlogStore = create<BlogStore>()(
 export const useBlogInput = () => useBlogStore((state) => state.input);
 export const useBlogWorkflow = () => useBlogStore((state) => state.workflow);
 export const useBlogTrends = () => useBlogStore((state) => state.trends);
+export const useBlogWebSearch = () => useBlogStore((state) => state.webSearch);
 export const useBlogResearch = () => useBlogStore((state) => state.research);
 export const useBlogOutline = () => useBlogStore((state) => state.outline);
 export const useBlogContent = () => useBlogStore((state) => state.content);

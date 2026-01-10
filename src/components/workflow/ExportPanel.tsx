@@ -74,11 +74,181 @@ export interface ExportPanelProps {
   onExport?: (platform: Platform, format: LocalExportFormat) => void;
 }
 
+// [IMG: 키워드] 마커에서 키워드 추출
+function extractImageMarkers(htmlContent: string): string[] {
+  const markers: string[] = [];
+  const regex = /\[IMG:\s*([^\]]+)\]/g;
+  let match;
+  while ((match = regex.exec(htmlContent)) !== null) {
+    markers.push(match[1].trim());
+  }
+  return markers;
+}
+
+// 이미지 URL을 API에서 가져오기
+async function fetchImageUrls(keywords: string[]): Promise<Map<string, string>> {
+  const imageMap = new Map<string, string>();
+
+  await Promise.all(
+    keywords.map(async (keyword, index) => {
+      try {
+        const searchTerms = translateKeywordsForSearch(keyword);
+        const response = await fetch(
+          `/api/images/search?query=${encodeURIComponent(searchTerms)}&index=${index}`
+        );
+        const data = await response.json();
+        imageMap.set(keyword, data.url);
+      } catch (error) {
+        console.error('Image fetch error:', error);
+        // 폴백: Lorem Picsum
+        const seed = hashCode(keyword + index);
+        imageMap.set(keyword, `https://picsum.photos/seed/${seed}/800/450`);
+      }
+    })
+  );
+
+  return imageMap;
+}
+
+// [IMG: 키워드] 마커를 실제 이미지로 변환 (동기 버전 - 이미 URL이 있을 때)
+function processImageMarkersSync(
+  htmlContent: string,
+  includeImages: boolean,
+  imageUrls: Map<string, string>
+): string {
+  if (!includeImages) {
+    return htmlContent.replace(/\[IMG:\s*([^\]]+)\]/g, '');
+  }
+
+  let imgIndex = 0;
+  const processedContent = htmlContent.replace(/\[IMG:\s*([^\]]+)\]/g, (_, keywords) => {
+    const trimmedKeywords = keywords.trim();
+    const imageUrl = imageUrls.get(trimmedKeywords) || `https://picsum.photos/seed/${hashCode(trimmedKeywords)}/800/450`;
+
+    // 이미지 번호에 따라 좌/우 번갈아 배치
+    const isLeft = imgIndex % 2 === 0;
+    const floatStyle = isLeft ? 'float: left; margin: 0 1.5rem 1rem 0;' : 'float: right; margin: 0 0 1rem 1.5rem;';
+    imgIndex++;
+
+    return `
+<figure style="${floatStyle} max-width: 45%; shape-outside: margin-box;">
+  <img src="${imageUrl}" alt="${trimmedKeywords}" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" loading="lazy" />
+  <figcaption style="margin-top: 0.5rem; font-size: 0.8rem; color: #888; text-align: center; font-style: italic;">${trimmedKeywords}</figcaption>
+</figure>`;
+  });
+
+  return processedContent;
+}
+
+// 문자열을 숫자 해시로 변환 (일관된 이미지 생성용)
+function hashCode(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash);
+}
+
+// 한글 키워드를 영어로 변환 (기본적인 매핑)
+function translateKeywordsForSearch(keywords: string): string {
+  const translations: Record<string, string> = {
+    // 시니어/건강 관련
+    '시니어': 'senior elderly',
+    '액티브': 'active healthy',
+    '라이프스타일': 'lifestyle',
+    '실버': 'silver senior',
+    '케어': 'care wellness',
+    '케어푸드': 'healthy food elderly',
+    '스마트 홈': 'smart home technology',
+    '스마트홈': 'smart home technology',
+    '간병': 'nursing care',
+    '노후': 'retirement elderly',
+    '복지': 'welfare senior',
+    '어르신': 'elderly senior',
+    '건강': 'health wellness',
+    '식단': 'healthy food diet',
+    '운동': 'exercise fitness',
+    '홈트레이닝': 'home workout fitness',
+    '요가': 'yoga wellness',
+    '산책': 'walking nature',
+    '웰빙': 'wellbeing healthy',
+
+    // 기기/테크 관련
+    '스마트폰': 'smartphone mobile',
+    '테크': 'technology gadget',
+    '기기': 'device gadget',
+    '디지털': 'digital technology',
+    '앱': 'app mobile',
+    '웨어러블': 'wearable smartwatch',
+
+    // 여행/여가 관련
+    '여행': 'travel vacation',
+    '관광': 'tourism travel',
+    '취미': 'hobby lifestyle',
+    '레저': 'leisure activity',
+    '문화': 'culture art',
+    '교육': 'education learning',
+    '배움': 'learning study',
+
+    // 금융/경제 관련
+    '돈': 'money finance',
+    '투자': 'investment stock',
+    '자산': 'asset wealth',
+    '연금': 'pension retirement',
+    '금융': 'finance banking',
+    '부업': 'side job business',
+    '재테크': 'investment finance',
+
+    // 음식 관련
+    '요리': 'cooking food',
+    '커피': 'coffee cafe',
+    '다이어트': 'diet fitness',
+    '맛집': 'restaurant food',
+    '카페': 'cafe coffee shop',
+    '음식': 'food cuisine',
+    '식품': 'food product',
+
+    // 생활 관련
+    '인테리어': 'interior design',
+    '패션': 'fashion style',
+    '뷰티': 'beauty makeup',
+    '육아': 'parenting baby',
+    '반려동물': 'pet dog cat',
+    '자동차': 'car automobile',
+    '주거': 'housing home',
+    '가전': 'home appliance',
+
+    // 엔터테인먼트 관련
+    '게임': 'gaming',
+    '음악': 'music',
+    '영화': 'movie cinema',
+    '독서': 'reading books',
+    '예술': 'art creative',
+  };
+
+  let result = keywords;
+  for (const [korean, english] of Object.entries(translations)) {
+    if (keywords.includes(korean)) {
+      result = result.replace(korean, english);
+    }
+  }
+
+  // 한글이 남아있으면 기본 영어 키워드 추가
+  if (/[가-힣]/.test(result)) {
+    result = result.replace(/[가-힣]+/g, '').trim() + ' lifestyle blog';
+  }
+
+  return result.trim() || 'lifestyle blog';
+}
+
 export function ExportPanel({ className, onExport }: ExportPanelProps) {
   const { content, input, meta, analysis } = useBlogStore();
   const [selectedFormat, setSelectedFormat] = React.useState<LocalExportFormat>('html');
   const [copied, setCopied] = React.useState(false);
   const [isExporting, setIsExporting] = React.useState(false);
+  const [exportStatus, setExportStatus] = React.useState<string>('');
   const [exportOptions, setExportOptions] = React.useState({
     includeImages: true,
     includeMeta: true,
@@ -90,11 +260,33 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
   const platformData = platformInfo[platform];
   const finalContent = content.finalContent || content.humanizedDraft || content.rawDraft || '';
 
+  // 이미지 URL 가져오기 (비동기)
+  const fetchImagesAndGenerate = async (format: LocalExportFormat): Promise<string> => {
+    let imageUrls = new Map<string, string>();
+
+    if (exportOptions.includeImages) {
+      setExportStatus('이미지 검색 중...');
+      const keywords = extractImageMarkers(finalContent);
+      if (keywords.length > 0) {
+        imageUrls = await fetchImageUrls(keywords);
+      }
+    }
+
+    setExportStatus('콘텐츠 생성 중...');
+    return generateExportContent(format, imageUrls);
+  };
+
   const handleCopy = async () => {
-    const exportContent = generateExportContent(selectedFormat);
-    await navigator.clipboard.writeText(exportContent);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setIsExporting(true);
+    try {
+      const exportContent = await fetchImagesAndGenerate(selectedFormat);
+      await navigator.clipboard.writeText(exportContent);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } finally {
+      setIsExporting(false);
+      setExportStatus('');
+    }
   };
 
   const handleExport = async () => {
@@ -104,20 +296,21 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
         await onExport(platform, selectedFormat);
       } else {
         // Default export behavior - download file
-        const exportContent = generateExportContent(selectedFormat);
+        const exportContent = await fetchImagesAndGenerate(selectedFormat);
         downloadFile(exportContent, selectedFormat);
       }
     } finally {
       setIsExporting(false);
+      setExportStatus('');
     }
   };
 
-  const generateExportContent = (format: LocalExportFormat): string => {
+  const generateExportContent = (format: LocalExportFormat, imageUrls: Map<string, string>): string => {
     switch (format) {
       case 'html':
-        return generateHtml();
+        return generateHtml(imageUrls);
       case 'markdown':
-        return generateMarkdown();
+        return generateMarkdown(imageUrls);
       case 'text':
         return generatePlainText();
       case 'json':
@@ -127,7 +320,7 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
     }
   };
 
-  const generateHtml = (): string => {
+  const generateHtml = (imageUrls: Map<string, string>): string => {
     let html = '';
 
     if (exportOptions.includeSeoTags) {
@@ -141,13 +334,72 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
       if (meta.hashtags && meta.hashtags.length > 0) {
         html += `  <meta name="keywords" content="${meta.hashtags.join(', ')}">\n`;
       }
+      // 블로그 스타일 CSS 추가
+      html += `  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.8;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fafafa;
+    }
+    article {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2a2a2a;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      clear: both;
+    }
+    p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+    strong {
+      color: #1a73e8;
+      font-weight: 600;
+    }
+    figure {
+      margin: 1rem 0;
+    }
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      article { padding: 1.5rem; }
+      figure {
+        float: none !important;
+        max-width: 100% !important;
+        margin: 1.5rem 0 !important;
+      }
+    }
+  </style>\n`;
       html += `</head>\n<body>\n`;
     }
 
+    // [IMG: 키워드] 마커를 실제 이미지로 변환 (Pexels API 사용)
+    const processedContent = processImageMarkersSync(finalContent, exportOptions.includeImages, imageUrls);
+
     html += `<article>\n`;
     html += `  <h1>${input.title}</h1>\n`;
-    html += finalContent;
-    html += `\n</article>\n`;
+    html += processedContent;
+    html += `\n  <div style="clear: both;"></div>\n`;
+    html += `</article>\n`;
 
     if (exportOptions.includeSeoTags) {
       html += `</body>\n</html>`;
@@ -156,26 +408,38 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
     return html;
   };
 
-  const generateMarkdown = (): string => {
+  const generateMarkdown = (imageUrls: Map<string, string>): string => {
     let md = `# ${input.title}\n\n`;
 
     // Convert HTML to Markdown (simplified)
-    let content = finalContent;
-    content = content.replace(/<h1[^>]*>(.*?)<\/h1>/gi, '# $1\n\n');
-    content = content.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '## $1\n\n');
-    content = content.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '### $1\n\n');
-    content = content.replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n');
-    content = content.replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**');
-    content = content.replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*');
-    content = content.replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)');
-    content = content.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, '$1\n');
-    content = content.replace(/<li[^>]*>(.*?)<\/li>/gi, '- $1\n');
-    content = content.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi, '> $1\n\n');
-    content = content.replace(/<br\s*\/?>/gi, '\n');
-    content = content.replace(/<[^>]+>/g, '');
-    content = content.replace(/\n{3,}/g, '\n\n');
+    let markdownContent = finalContent;
 
-    md += content.trim();
+    // [IMG: 키워드] 마커를 Markdown 이미지로 변환
+    if (exportOptions.includeImages) {
+      markdownContent = markdownContent.replace(/\[IMG:\s*([^\]]+)\]/g, (_, keywords) => {
+        const trimmedKeywords = keywords.trim();
+        const imageUrl = imageUrls.get(trimmedKeywords) || `https://picsum.photos/seed/${hashCode(trimmedKeywords)}/800/450`;
+        return `\n\n![${trimmedKeywords}](${imageUrl})\n*${trimmedKeywords}*\n\n`;
+      });
+    } else {
+      markdownContent = markdownContent.replace(/\[IMG:\s*([^\]]+)\]/g, '');
+    }
+
+    markdownContent = markdownContent.replace(/<h1[^>]*>(.*?)<\/h1>/gi, '# $1\n\n');
+    markdownContent = markdownContent.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '## $1\n\n');
+    markdownContent = markdownContent.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '### $1\n\n');
+    markdownContent = markdownContent.replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n');
+    markdownContent = markdownContent.replace(/<strong[^>]*>(.*?)<\/strong>/gi, '**$1**');
+    markdownContent = markdownContent.replace(/<em[^>]*>(.*?)<\/em>/gi, '*$1*');
+    markdownContent = markdownContent.replace(/<a[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)');
+    markdownContent = markdownContent.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, '$1\n');
+    markdownContent = markdownContent.replace(/<li[^>]*>(.*?)<\/li>/gi, '- $1\n');
+    markdownContent = markdownContent.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi, '> $1\n\n');
+    markdownContent = markdownContent.replace(/<br\s*\/?>/gi, '\n');
+    markdownContent = markdownContent.replace(/<[^>]+>/g, '');
+    markdownContent = markdownContent.replace(/\n{3,}/g, '\n\n');
+
+    md += markdownContent.trim();
 
     if (exportOptions.includeMeta && meta.hashtags && meta.hashtags.length > 0) {
       md += `\n\n---\n\n**키워드:** ${meta.hashtags.join(', ')}`;
@@ -188,6 +452,14 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
     let text = `${input.title}\n${'='.repeat(input.title.length)}\n\n`;
 
     let content = finalContent;
+
+    // 이미지 마커 처리 (PlainText에서는 설명만 남김)
+    if (exportOptions.includeImages) {
+      content = content.replace(/\[IMG:\s*([^\]]+)\]/g, '\n[이미지: $1]\n');
+    } else {
+      content = content.replace(/\[IMG:\s*([^\]]+)\]/g, '');
+    }
+
     content = content.replace(/<h[1-6][^>]*>(.*?)<\/h[1-6]>/gi, '$1\n\n');
     content = content.replace(/<p[^>]*>(.*?)<\/p>/gi, '$1\n\n');
     content = content.replace(/<li[^>]*>(.*?)<\/li>/gi, '• $1\n');
@@ -417,12 +689,19 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
 
       {/* Actions */}
       <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 space-y-3">
+        {/* Export Status */}
+        {isExporting && exportStatus && (
+          <div className="text-sm text-center text-blue-600 dark:text-blue-400">
+            {exportStatus}
+          </div>
+        )}
+
         <div className="flex gap-2">
           <Button
             variant="outline"
             className="flex-1"
             onClick={handleCopy}
-            disabled={!finalContent}
+            disabled={!finalContent || isExporting}
           >
             {copied ? (
               <>
@@ -445,7 +724,7 @@ export function ExportPanel({ className, onExport }: ExportPanelProps) {
             {isExporting ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                내보내는 중...
+                {exportStatus || '내보내는 중...'}
               </>
             ) : (
               <>

@@ -17,6 +17,12 @@ import {
   X,
   Loader2,
   RefreshCw,
+  Search,
+  Globe,
+  CheckCircle,
+  BookOpen,
+  BarChart3,
+  FileText,
 } from 'lucide-react';
 
 // ============================================================
@@ -24,9 +30,10 @@ import {
 // ============================================================
 
 export function TopicInput() {
-  const { input, trends, actions } = useBlogStore();
+  const { input, trends, webSearch, actions } = useBlogStore();
   const [newKeyword, setNewKeyword] = React.useState('');
   const [showSuggestions, setShowSuggestions] = React.useState(false);
+  const [showSearchResults, setShowSearchResults] = React.useState(false);
 
   const handleAddKeyword = () => {
     if (newKeyword.trim() && !input.keywords.includes(newKeyword.trim())) {
@@ -217,19 +224,196 @@ export function TopicInput() {
         )}
       </div>
 
-      {/* Reference Text */}
+      {/* Reference Text with Web Search */}
       <div>
         <div className="flex items-center justify-between mb-2">
           <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
             참고 자료 (선택)
           </label>
+          <Button
+            variant="ghost"
+            size="xs"
+            onClick={async () => {
+              await actions.fetchWebSearch();
+              setShowSearchResults(true);
+            }}
+            disabled={!input.topic || webSearch.isSearching}
+          >
+            {webSearch.isSearching ? (
+              <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+            ) : (
+              <Globe className="h-3 w-3 mr-1" />
+            )}
+            웹에서 자료 검색
+          </Button>
         </div>
+
+        {/* Web Search Results */}
+        {showSearchResults && webSearch.results && (
+          <Card className="mb-3 p-4 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-900/20 dark:to-cyan-900/20 border-emerald-100 dark:border-emerald-800">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Search className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                  검색된 참고자료
+                </span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Button
+                  variant="ghost"
+                  size="xs"
+                  onClick={() => {
+                    actions.applyWebSearchToReference();
+                    setShowSearchResults(false);
+                  }}
+                  className="text-emerald-600 hover:text-emerald-700"
+                >
+                  <CheckCircle className="h-3 w-3 mr-1" />
+                  적용
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="xs"
+                  onClick={() => setShowSearchResults(false)}
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Summary */}
+            <div className="mb-3">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                {webSearch.results.summary}
+              </p>
+            </div>
+
+            {/* Key Points */}
+            {webSearch.results.keyPoints.length > 0 && (
+              <div className="mb-3">
+                <div className="flex items-center gap-1 mb-2">
+                  <BookOpen className="h-3 w-3 text-emerald-600" />
+                  <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                    핵심 포인트
+                  </span>
+                </div>
+                <ul className="space-y-1">
+                  {webSearch.results.keyPoints.slice(0, 5).map((point, index) => (
+                    <li
+                      key={index}
+                      className="text-xs text-zinc-600 dark:text-zinc-400 flex items-start gap-2"
+                    >
+                      <span className="text-emerald-500 mt-0.5">•</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Statistics */}
+            {webSearch.results.statistics.length > 0 && (
+              <div className="mb-3">
+                <div className="flex items-center gap-1 mb-2">
+                  <BarChart3 className="h-3 w-3 text-cyan-600" />
+                  <span className="text-xs font-medium text-cyan-700 dark:text-cyan-300">
+                    관련 통계
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {webSearch.results.statistics.slice(0, 3).map((stat, index) => (
+                    <Badge key={index} variant="outline" size="sm" className="text-xs">
+                      {stat}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Sources */}
+            {webSearch.results.sources.length > 0 && (
+              <div className="mb-3">
+                <div className="flex items-center gap-1 mb-2">
+                  <FileText className="h-3 w-3 text-blue-600" />
+                  <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
+                    참고 자료
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  {webSearch.results.sources.slice(0, 3).map((source, index) => (
+                    <div
+                      key={index}
+                      className="text-xs bg-white/50 dark:bg-zinc-800/50 rounded p-2"
+                    >
+                      <p className="font-medium text-zinc-800 dark:text-zinc-200">
+                        {source.title}
+                      </p>
+                      <p className="text-zinc-500 dark:text-zinc-400 mt-0.5">
+                        {source.snippet}
+                      </p>
+                      {source.source && (
+                        <p className="text-zinc-400 dark:text-zinc-500 mt-0.5 text-[10px]">
+                          출처: {source.source}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Related Topics */}
+            {webSearch.results.relatedTopics.length > 0 && (
+              <div>
+                <div className="flex items-center gap-1 mb-2">
+                  <Hash className="h-3 w-3 text-purple-600" />
+                  <span className="text-xs font-medium text-purple-700 dark:text-purple-300">
+                    관련 주제
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {webSearch.results.relatedTopics.slice(0, 5).map((topic, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (!input.keywords.includes(topic)) {
+                          actions.setInput('keywords', [...input.keywords.slice(0, 9), topic]);
+                        }
+                      }}
+                      className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
+                    >
+                      + {topic}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </Card>
+        )}
+
+        {/* Web Search Loading */}
+        {webSearch.isSearching && (
+          <Card className="mb-3 p-4 bg-zinc-50 dark:bg-zinc-800/50">
+            <div className="flex items-center justify-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin text-emerald-600" />
+              <span className="text-sm text-zinc-600 dark:text-zinc-400">
+                웹에서 참고자료를 검색하는 중...
+              </span>
+            </div>
+          </Card>
+        )}
+
         <Textarea
           placeholder="참고할 자료나 메모를 입력하세요. AI가 이를 바탕으로 더 정확한 콘텐츠를 생성합니다."
           value={input.referenceText}
           onChange={(e) => actions.setInput('referenceText', e.target.value)}
           rows={4}
         />
+        {input.referenceText && (
+          <p className="text-xs text-zinc-500 mt-1">
+            {input.referenceText.length}자 입력됨
+          </p>
+        )}
       </div>
     </div>
   );
