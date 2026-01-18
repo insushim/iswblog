@@ -1,15 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { researchPrompt } from '@/lib/prompts/writing-prompts';
-import { callGemini } from '@/lib/gemini';
+import { callGemini, callGeminiPremium } from '@/lib/gemini';
+import {
+  conductVerifiedResearch,
+  formatVerifiedDataForWriting,
+  type ResearchResult
+} from '@/lib/verified-research';
 
 // ============================================================
-// Research API Route
+// Research API Route - 교차검증 리서치 시스템
 // ============================================================
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { topic, keywords, platform } = body;
+    const {
+      topic,
+      keywords,
+      platform,
+      // 새로운 옵션들
+      enableVerification = true,  // 교차검증 활성화
+      minSources = 10,            // 최소 출처 수
+      requireGovSource = true,    // 정부 출처 필수
+    } = body;
 
     if (!topic) {
       return NextResponse.json(
@@ -27,17 +40,63 @@ export async function POST(request: NextRequest) {
         keywordResearch: generateMockKeywordResearch(topic),
         audienceInsights: generateMockAudienceInsights(),
         contentAngle: generateMockContentAngle(topic),
+        verifiedResearch: null,
+        verificationEnabled: false,
       });
     }
 
-    const userPrompt = `주제: ${topic}\n키워드: ${keywords?.join(', ') || ''}\n플랫폼: ${platform || 'general'}`;
+    // ============================================================
+    // 1. 교차검증 리서치 수행 (새로운 기능!)
+    // ============================================================
+    let verifiedResearch: ResearchResult | null = null;
+    let formattedResearchData = '';
+
+    if (enableVerification) {
+      console.log(`[Research API] Starting verified research for: ${topic}`);
+
+      verifiedResearch = await conductVerifiedResearch(topic, {
+        minSources,
+        requireGovernmentSource: requireGovSource,
+        requireRecentData: true,
+        maxAgeMonths: 12,
+      });
+
+      formattedResearchData = formatVerifiedDataForWriting(verifiedResearch);
+
+      console.log(`[Research API] Verification complete. Reliability: ${verifiedResearch.overallReliability}%`);
+    }
+
+    // ============================================================
+    // 2. 기존 리서치 분석 (키워드, 오디언스 등)
+    // ============================================================
+    const userPrompt = `주제: ${topic}\n키워드: ${keywords?.join(', ') || ''}\n플랫폼: ${platform || 'general'}
+
+${formattedResearchData ? `\n[이미 수집된 검증 데이터]\n${formattedResearchData}` : ''}`;
 
     const content = await callGemini(userPrompt, researchPrompt);
 
     // Parse the response
     const researchData = parseResearchResponse(content, topic);
 
-    return NextResponse.json(researchData);
+    // ============================================================
+    // 3. 최종 응답 구성
+    // ============================================================
+    return NextResponse.json({
+      ...researchData,
+      // 검증된 리서치 데이터 추가
+      verifiedResearch: verifiedResearch ? {
+        facts: verifiedResearch.verifiedFacts,
+        statistics: verifiedResearch.statistics,
+        expertQuotes: verifiedResearch.expertQuotes,
+        recentNews: verifiedResearch.recentNews,
+        conflictingInfo: verifiedResearch.conflictingInfo,
+        reliability: verifiedResearch.overallReliability,
+        sourcesUsed: verifiedResearch.sourcesUsed,
+      } : null,
+      verificationEnabled: enableVerification,
+      // 글 생성에 사용할 검증된 데이터 (포맷팅됨)
+      verifiedDataForWriting: formattedResearchData || null,
+    });
   } catch (error) {
     console.error('Research API error:', error);
     return NextResponse.json(

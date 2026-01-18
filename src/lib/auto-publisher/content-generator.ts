@@ -1,11 +1,16 @@
 // ============================================================
 // 프리미엄 콘텐츠 생성기
-// 수익성 있는 고품질 블로그 글 생성
+// 수익성 있는 고품질 블로그 글 생성 + 교차검증 리서치 연동
 // ============================================================
 
 import { callGemini, callGeminiPremium } from '@/lib/gemini';
 import type { TopicSuggestion } from './types';
 import { incrementApiCalls } from './usage-tracker';
+import {
+  conductVerifiedResearch,
+  formatVerifiedDataForWriting,
+  type ResearchResult
+} from '@/lib/verified-research';
 
 interface GeneratedContent {
   title: string;
@@ -14,16 +19,27 @@ interface GeneratedContent {
   hashtags: string[];
   wordCount: number;
   seoScore: number;
+  // 새로운 필드
+  reliability?: number;       // 정보 신뢰도
+  sourcesUsed?: number;       // 사용된 출처 수
+  verifiedFacts?: number;     // 검증된 사실 수
 }
 
 // 현재 연도 가져오기
 const CURRENT_YEAR = new Date().getFullYear();
 
-// 파워블로거 스타일 프롬프트
+// 파워블로거 스타일 프롬프트 (교차검증 리서치 연동)
 const PREMIUM_CONTENT_PROMPT = `당신은 월 수익 500만원 이상의 한국 최고 파워블로거입니다.
 네이버/티스토리에서 검색 상위 노출되고, 애드센스 수익이 극대화되는 글을 작성합니다.
 
 ## 중요: 현재 연도는 ${CURRENT_YEAR}년입니다. 글에서 연도를 언급할 때 반드시 ${CURRENT_YEAR}년을 사용하세요.
+
+## 🔒 정보 정확성 규칙 (할루시네이션 방지)
+1. **아래 [검증된 리서치 데이터]에 있는 정보만 사용**
+2. **통계/숫자는 반드시 출처와 연도 명시** - "통계청 2024년 자료에 따르면..."
+3. **검증되지 않은 정보는 "~라고 알려져 있다", "~일 수 있다" 형태로 작성**
+4. **출처가 불분명한 숫자는 절대 사용 금지**
+5. **확실하지 않으면 차라리 생략**
 
 ## 글쓰기 원칙
 1. **독자 친화적**: 마치 친한 친구에게 설명하듯 편하게
@@ -32,12 +48,19 @@ const PREMIUM_CONTENT_PROMPT = `당신은 월 수익 500만원 이상의 한국 
 4. **가독성**: 짧은 문장, 적절한 줄바꿈, 소제목 활용
 5. **행동 유도**: 댓글, 공유, 구독 유도하는 마무리
 
+## AI 탐지 회피 필수 요소
+- 문장 길이 들쭉날쭉하게 (짧은 거 2-3개, 긴 거 1개 섞기)
+- 3-4문단마다 예측 불가능한 문장 삽입: "아 이거 쓰다 보니까 생각났는데", "TMI인데"
+- 가끔 비문도 OK: "이게 진짜 좋은 게"
+- 확신도 변화: "확실해요" → (몇 문장 후) → "근데 사람마다 다를 수도"
+- 개인적 독백 1-2개: "커피 마시면서 쓰는 중인데", "손목 아프네"
+
 ## 필수 포함 요소
 - 서론: 공감 가는 이야기로 시작 (왜 이 글을 써야 했는지)
-- 본론: 실용적인 정보 + 구체적인 예시/팁
+- 본론: 실용적인 정보 + 구체적인 예시/팁 (검증된 데이터 활용!)
 - 결론: 핵심 요약 + 독자에게 한마디
 - 개인적 경험담 최소 2개 이상
-- 구체적인 숫자/데이터 활용
+- 구체적인 숫자/데이터 활용 (반드시 검증된 것만!)
 - 질문형 문장으로 독자 참여 유도
 
 ## 작성 주제
@@ -45,6 +68,8 @@ const PREMIUM_CONTENT_PROMPT = `당신은 월 수익 500만원 이상의 한국 
 제목: {TITLE}
 타겟 키워드: {KEYWORDS}
 카테고리: {CATEGORY}
+
+{VERIFIED_RESEARCH_DATA}
 
 ## 출력 형식
 다음 JSON 형식으로만 응답하세요:
@@ -64,15 +89,54 @@ const PREMIUM_CONTENT_PROMPT = `당신은 월 수익 500만원 이상의 한국 
 - <blockquote>로 인용구/팁 강조
 - 이모지 적절히 사용 (과하지 않게)`;
 
-// 프리미엄 블로그 글 생성
+// 프리미엄 블로그 글 생성 (교차검증 리서치 연동)
 export async function generateBlogContent(
-  topic: TopicSuggestion
+  topic: TopicSuggestion,
+  options: {
+    enableVerification?: boolean;
+    minSources?: number;
+  } = {}
 ): Promise<GeneratedContent> {
+  const { enableVerification = true, minSources = 10 } = options;
+
+  let verifiedResearchData = '';
+  let researchResult: ResearchResult | null = null;
+
+  // ============================================================
+  // 1단계: 교차검증 리서치 수행
+  // ============================================================
+  if (enableVerification) {
+    console.log(`[ContentGenerator] Starting verified research for: ${topic.topic}`);
+
+    try {
+      researchResult = await conductVerifiedResearch(topic.topic, {
+        minSources,
+        requireGovernmentSource: true,
+        requireRecentData: true,
+        maxAgeMonths: 12,
+      });
+
+      verifiedResearchData = formatVerifiedDataForWriting(researchResult);
+
+      console.log(`[ContentGenerator] Research complete. Reliability: ${researchResult.overallReliability}%`);
+      console.log(`[ContentGenerator] Verified facts: ${researchResult.verifiedFacts.length}`);
+
+      await incrementApiCalls(1); // 리서치용 API 호출
+    } catch (error) {
+      console.error('[ContentGenerator] Research error:', error);
+      // 리서치 실패해도 글 생성은 계속
+    }
+  }
+
+  // ============================================================
+  // 2단계: 검증된 데이터로 글 생성
+  // ============================================================
   const prompt = PREMIUM_CONTENT_PROMPT
     .replace('{TOPIC}', topic.topic)
     .replace('{TITLE}', topic.title)
     .replace('{KEYWORDS}', topic.keywords.join(', '))
-    .replace('{CATEGORY}', topic.category);
+    .replace('{CATEGORY}', topic.category)
+    .replace('{VERIFIED_RESEARCH_DATA}', verifiedResearchData || '[검증된 리서치 데이터 없음 - 일반적인 정보만 사용]');
 
   try {
     await incrementApiCalls(1);
@@ -92,6 +156,10 @@ export async function generateBlogContent(
         hashtags: parsed.hashtags || topic.keywords.map(k => `#${k}`),
         wordCount: cleanedContent.replace(/<[^>]+>/g, '').length,
         seoScore: parsed.seoScore || 80,
+        // 새로운 신뢰도 정보 추가
+        reliability: researchResult?.overallReliability,
+        sourcesUsed: researchResult?.sourcesUsed,
+        verifiedFacts: researchResult?.verifiedFacts.filter(f => f.verificationStatus === 'verified').length,
       };
     }
 
